@@ -53,7 +53,9 @@ class WelcomeScreen extends StatelessWidget {
                     SizedBox(height: 60),
                     Container(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/auth');
+                        },
                         child: Text(
                           "Let's Continue",
                         ),
