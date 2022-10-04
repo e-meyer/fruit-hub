@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruithub/screens/auth_screen.dart';
+import 'package:fruithub/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -11,16 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: Text(
-          'Initial Screen',
-          style: GoogleFonts.poppins(),
-        ),
-      ),
+      title: 'Fruit ',
+      theme: ThemeData(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => const WelcomeScreen(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/auth': (context) => const AuthScreen(),
+      },
     );
   }
 }
