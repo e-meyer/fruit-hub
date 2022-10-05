@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fruithub/components/searchbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<String> filters = [
+    'All',
+    'Salad Combo',
+    'Berry Combo',
+    'Mango Combo'
+  ];
+
   @override
   Widget build(BuildContext context) {
     // recieves argument from last screen and stores it in user
@@ -30,13 +38,27 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: CircleAvatar(
-              radius: 25,
-              backgroundColor: Color(0xFFFFFFFF),
-              child: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/shopping-basket.svg',
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 1,
+                    color: Colors.grey,
+                    spreadRadius: 0,
+                    offset: Offset(0, 0.5),
+                  )
+                ],
+              ),
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color(0xFFFFFFFF),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    'assets/icons/shopping-basket.svg',
+                  ),
                 ),
               ),
             ),
@@ -58,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         child: ListView(
           children: [
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Row(
@@ -78,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: IconButton(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 12),
+                          EdgeInsets.symmetric(horizontal: 5, vertical: 16),
                       constraints: BoxConstraints(),
                       onPressed: () {},
                       icon: SvgPicture.asset(
@@ -88,8 +110,55 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            )
+            ),
+            const SizedBox(height: 15),
+            Container(
+              height: 40,
+              color: Color(0xFFFAFAFA),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  const SizedBox(width: 20),
+                  for (var filter in filters) FilterCard(filterName: filter),
+                ],
+              ),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class FilterCard extends StatefulWidget {
+  const FilterCard({super.key, required this.filterName});
+
+  final String filterName;
+
+  @override
+  State<FilterCard> createState() => _FilterCardState();
+}
+
+class _FilterCardState extends State<FilterCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 5, 8, 5),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          elevation: 1,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+        onPressed: () {},
+        child: Text(
+          widget.filterName,
+          style: GoogleFonts.poppins(
+            color: Color(0xFF333333),
+            fontSize: 14,
+          ),
         ),
       ),
     );
