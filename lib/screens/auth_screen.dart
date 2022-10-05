@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -9,6 +10,15 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  TextEditingController _username = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _username.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,44 +58,74 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                       ),
                       SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Chris',
-                          hintStyle: TextStyle(
-                            color: Color(0xFFC2BDBD),
-                            fontWeight: FontWeight.w500,
+                      Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            color: Color(0xFF5D577E),
+                            fontWeight: FontWeight.w600,
                           ),
-                          filled: true,
-                          fillColor: Color(0xFFF7F5F5),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
+                          maxLength: 16,
+                          controller: _username,
+                          cursorColor: Theme.of(context).primaryColor,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 15),
+                            hintText: 'Chris',
+                            hintStyle: const TextStyle(
+                              color: Color(0xFFC2BDBD),
+                              fontWeight: FontWeight.w600,
+                            ),
+                            counterText: "",
+                            filled: true,
+                            fillColor: Color(0xFFF7F5F5),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
                             ),
                           ),
+                          validator: ((value) {
+                            final validCharacters = RegExp(r'^[a-zA-Z]+$');
+
+                            if (value == null || value.isEmpty) {
+                              return 'Please provide a name';
+                            } else if (!validCharacters.hasMatch(value)) {
+                              return 'Please enter only valid characters';
+                            }
+
+                            return null;
+                          }),
                         ),
                       ),
                       SizedBox(height: 60),
                       Container(
                         child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/auth');
-                          },
                           child: Text(
                             "Start Ordering",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)),
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            padding: EdgeInsets.symmetric(vertical: 15.0),
                             backgroundColor: Color(0xFFFFA451),
                             elevation: 0,
-                            minimumSize: Size.fromHeight(
-                                40), // fromHeight use double.infinity as width and 40 is the height
+                            minimumSize: Size.fromHeight(40),
                           ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.pushNamed(context, '/home',
+                                  arguments: User(_username.text));
+                            }
+                          },
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
