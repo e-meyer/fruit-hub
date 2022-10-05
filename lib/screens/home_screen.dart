@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // recieves argument from last screen and stores it in user
     var user = ModalRoute.of(context)!.settings.arguments as User;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -124,8 +125,107 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Recommended Combo',
+                    style: GoogleFonts.poppins(
+                      color: Color(0xFF27214D),
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).primaryColor),
+                    width: 60,
+                    height: 2,
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      ComboCard(
+                        comboAssetPath: 'assets/foods/honey-lime-combo.png',
+                        comboName: 'Honey lime combo',
+                        comboPrice: '2000',
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ComboCard(
+                        comboAssetPath: 'assets/foods/berry-mango-combo.png',
+                        comboName: 'Berry mango combo',
+                        comboPrice: '2000',
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ComboCard extends StatefulWidget {
+  const ComboCard(
+      {super.key,
+      required this.comboAssetPath,
+      required this.comboName,
+      required this.comboPrice});
+
+  final String comboAssetPath;
+  final String comboName;
+  final String comboPrice;
+
+  @override
+  State<ComboCard> createState() => ComboCardState();
+}
+
+class ComboCardState extends State<ComboCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          elevation: 10,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
+              child: Image.asset(
+                widget.comboAssetPath,
+              ),
+            ),
+            Text(
+              widget.comboName,
+              style: GoogleFonts.poppins(
+                color: Color(0xFF27214D),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [],
+            )
+          ],
+        ),
+        onPressed: () {},
       ),
     );
   }
