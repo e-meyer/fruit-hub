@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // recieves argument from last screen and stories it in user
+    // recieves argument from last screen and stores it in user
     var user = ModalRoute.of(context)!.settings.arguments as User;
 
     return Scaffold(
@@ -41,12 +41,52 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-        leading: Icon(
-          Icons.menu,
+        leading: IconButton(
+          splashRadius: 20,
+          icon: SvgPicture.asset(
+            'assets/menu.svg',
+            color: Colors.black,
+          ),
+          iconSize: 100,
           color: Color(0xFF070648),
+          onPressed: () {},
         ),
         elevation: 0,
         backgroundColor: Colors.white,
+      ),
+      body: Container(
+        child: ListView(
+          children: [
+            TextFormField(
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: Color(0xFF5D577E),
+                fontWeight: FontWeight.w600,
+              ),
+              maxLength: 16,
+              cursorColor: Theme.of(context).primaryColor,
+              decoration: InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                hintText: 'Search for fruit salad combos',
+                hintStyle: const TextStyle(
+                  fontSize: 12,
+                  color: Color(0xFFB4B4C0),
+                ),
+                counterText: "",
+                filled: true,
+                fillColor: Color(0xFFF5F5F5),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
