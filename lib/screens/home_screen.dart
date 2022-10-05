@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruithub/components/searchbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../data/user.dart';
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: IconButton(
                 onPressed: () {},
                 icon: SvgPicture.asset(
-                  'assets/shopping-basket.svg',
+                  'assets/icons/shopping-basket.svg',
                 ),
               ),
             ),
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           splashRadius: 20,
           icon: SvgPicture.asset(
-            'assets/menu.svg',
+            'assets/icons/menu.svg',
             color: Colors.black,
           ),
           iconSize: 100,
@@ -57,32 +58,35 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         child: ListView(
           children: [
-            TextFormField(
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                color: Color(0xFF5D577E),
-                fontWeight: FontWeight.w600,
-              ),
-              maxLength: 16,
-              cursorColor: Theme.of(context).primaryColor,
-              decoration: InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                hintText: 'Search for fruit salad combos',
-                hintStyle: const TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFFB4B4C0),
-                ),
-                counterText: "",
-                filled: true,
-                fillColor: Color(0xFFF5F5F5),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
+            SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                children: [
+                  Flexible(
+                    child: SearchBar(),
                   ),
-                ),
+                  SizedBox(width: 5),
+                  Container(
+                    decoration: const ShapeDecoration(
+                      color: Color(0xFFF7F7FC),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                    child: IconButton(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5, vertical: 12),
+                      constraints: BoxConstraints(),
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        'assets/icons/filter.svg',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
