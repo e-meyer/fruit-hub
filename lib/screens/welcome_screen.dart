@@ -11,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            color: Color(0xFFFFA451),
+            color: Theme.of(context).primaryColor,
             height: height * 0.60,
             child: Align(
               alignment: FractionalOffset.bottomCenter,
@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
               alignment: FractionalOffset.topLeft,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -58,15 +58,18 @@ class WelcomeScreen extends StatelessWidget {
                         },
                         child: Text(
                           "Let's Continue",
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                          ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
                           padding: EdgeInsets.symmetric(vertical: 20.0),
-                          backgroundColor: Color(0xFFFFA451),
+                          backgroundColor: Theme.of(context).primaryColor,
                           elevation: 0,
-                          minimumSize: Size.fromHeight(
-                              40), // fromHeight use double.infinity as width and 40 is the height
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          minimumSize: Size.fromHeight(40),
                         ),
                       ),
                     )
