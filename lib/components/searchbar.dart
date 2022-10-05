@@ -21,7 +21,7 @@ class _SearchBarState extends State<SearchBar> {
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
         prefixIcon: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           child: SvgPicture.asset(
             'assets/icons/search.svg',
           ),
