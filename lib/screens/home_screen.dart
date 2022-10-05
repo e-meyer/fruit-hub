@@ -119,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 40,
               color: Color(0xFFFAFAFA),
               child: ListView(
+                physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 children: [
                   const SizedBox(width: 20),
