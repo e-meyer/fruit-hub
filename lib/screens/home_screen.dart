@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruithub/components/category_menu.dart';
 import 'package:fruithub/components/product_card.dart';
 import 'package:fruithub/components/filter_list.dart';
 import 'package:fruithub/components/recom_combo_structure.dart';
@@ -7,8 +8,6 @@ import 'package:fruithub/data/products.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../data/user.dart';
-
-List<ProductCard> productList = Product().hottest;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -138,94 +137,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class CategoryMenu extends StatefulWidget {
-  const CategoryMenu({super.key});
-
-  @override
-  State<CategoryMenu> createState() => _CategoryMenuState();
-}
-
-class _CategoryMenuState extends State<CategoryMenu> {
-  final List<bool> _selectedMenu = <bool>[true, false, false];
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        ToggleButtons(
-          renderBorder: false,
-          direction: Axis.horizontal,
-          onPressed: (int index) {
-            for (int i = 0; i < _selectedMenu.length; i++) {
-              _selectedMenu[i] = i == index;
-            }
-
-            switch (index) {
-              case 0:
-                productList = Product().hottest;
-                break;
-              case 1:
-                productList = Product().popular;
-                break;
-              case 2:
-                productList = Product().newCombo;
-                break;
-            }
-            setState(() {
-              productList;
-            });
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedColor: Color(0xFF27214D),
-          fillColor: Colors.white,
-          color: Color(0xFFACB3BC),
-          constraints: const BoxConstraints(
-            minHeight: 20.0,
-            minWidth: 100.0,
-          ),
-          isSelected: _selectedMenu,
-          children: const [
-            MenuLabel(label: 'Hottest'),
-            MenuLabel(label: 'Popular'),
-            MenuLabel(label: 'New Combo'),
-          ],
-        ),
-        Container(
-          height: 160,
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            children: [
-              const SizedBox(width: 20),
-              for (var product in productList) product,
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class MenuLabel extends StatefulWidget {
-  const MenuLabel({super.key, required this.label});
-
-  final String label;
-
-  @override
-  State<MenuLabel> createState() => _MenuLabelState();
-}
-
-class _MenuLabelState extends State<MenuLabel> {
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      widget.label,
-      style: GoogleFonts.poppins(fontSize: 16),
     );
   }
 }
