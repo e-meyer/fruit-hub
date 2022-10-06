@@ -8,22 +8,22 @@ class Product extends StatelessWidget {
     ProductCard(
       productName: 'Quinoa fruit salad',
       productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Tropical fruit salad',
       productAssetPath: 'assets/foods/bread-eggs.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Fruit mix combo',
       productAssetPath: 'assets/foods/fruit-mix-1.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Cooked fruit salad',
       productAssetPath: 'assets/foods/fruit-mix-2.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
   ];
 
@@ -31,22 +31,22 @@ class Product extends StatelessWidget {
     ProductCard(
       productName: 'Fruit mix combo',
       productAssetPath: 'assets/foods/fruit-mix-1.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Quinoa fruit salad',
       productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Honey lime combo',
       productAssetPath: 'assets/foods/honey-lime-combo.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Berry mango combo',
       productAssetPath: 'assets/foods/berry-mango-combo.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
   ];
 
@@ -54,22 +54,22 @@ class Product extends StatelessWidget {
     ProductCard(
       productName: 'Tropical fruit salad',
       productAssetPath: 'assets/foods/bread-eggs.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Honey lime combo',
       productAssetPath: 'assets/foods/honey-lime-combo.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Fruit mix combo',
       productAssetPath: 'assets/foods/fruit-mix-1.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Quinoa fruit salad',
       productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
   ];
 
@@ -77,22 +77,22 @@ class Product extends StatelessWidget {
     ProductCard(
       productName: 'Quinoa fruit salad',
       productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Tropical fruit salad',
       productAssetPath: 'assets/foods/bread-eggs.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Fruit mix combo',
       productAssetPath: 'assets/foods/fruit-mix-1.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
     ProductCard(
       productName: 'Cooked fruit salad',
       productAssetPath: 'assets/foods/fruit-mix-2.png',
-      productPrice: '10000',
+      productPrice: 10000,
     ),
   ];
 

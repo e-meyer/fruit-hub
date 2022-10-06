@@ -15,7 +15,7 @@ class ProductCard extends StatefulWidget {
 
   final String productAssetPath;
   final String productName;
-  final String productPrice;
+  final double productPrice;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -74,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        "${numberFormatter.format(int.parse(widget.productPrice))}",
+                        "${numberFormatter.format(widget.productPrice)}",
                         style: GoogleFonts.poppins(
                           color: Theme.of(context).primaryColor,
                           fontSize: 14,
