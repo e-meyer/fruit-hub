@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MenuLabel extends StatefulWidget {
-  const MenuLabel({super.key, required this.label});
+class CategoryMealsLabel extends StatefulWidget {
+  const CategoryMealsLabel({super.key, required this.label});
 
   final String label;
 
   @override
-  State<MenuLabel> createState() => _MenuLabelState();
+  State<CategoryMealsLabel> createState() => _CategoryMealsLabelState();
 }
 
-class _MenuLabelState extends State<MenuLabel> {
+class _CategoryMealsLabelState extends State<CategoryMealsLabel> {
   @override
   Widget build(BuildContext context) {
     return Text(
