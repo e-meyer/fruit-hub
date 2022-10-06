@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/category_menu.dart';
+import 'package:fruithub/components/categorized_meals.dart';
 import 'package:fruithub/components/product_card.dart';
 import 'package:fruithub/components/filter_list.dart';
 import 'package:fruithub/components/recom_combo_structure.dart';
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 40),
             RecommendedCombo(),
             const SizedBox(height: 40),
-            CategoryMenu(),
+            CategorizedMeals(),
             const SizedBox(height: 10),
           ],
         ),
