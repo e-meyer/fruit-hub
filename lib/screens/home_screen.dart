@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/combo_card.dart';
+import 'package:fruithub/components/product_card.dart';
 import 'package:fruithub/components/filter_list.dart';
+import 'package:fruithub/components/recom_combo_structure.dart';
 import 'package:fruithub/components/searchbar.dart';
+import 'package:fruithub/data/products.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../data/user.dart';
+
+List<ProductCard> productList = Product().hottest;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // recieves argument from last screen and stores it in user
     var user = ModalRoute.of(context)!.settings.arguments as User;
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -37,6 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Color(0xFF27214D),
             fontSize: 14,
           ),
+        ),
+        leading: IconButton(
+          splashRadius: 20,
+          icon: SvgPicture.asset(
+            'assets/icons/menu.svg',
+            color: Colors.black,
+          ),
+          iconSize: 100,
+          color: Color(0xFF070648),
+          onPressed: () {},
         ),
         actions: [
           Padding(
@@ -67,16 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-        leading: IconButton(
-          splashRadius: 20,
-          icon: SvgPicture.asset(
-            'assets/icons/menu.svg',
-            color: Colors.black,
-          ),
-          iconSize: 100,
-          color: Color(0xFF070648),
-          onPressed: () {},
-        ),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
@@ -128,50 +131,101 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Recommended Combo',
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF27214D),
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).primaryColor),
-                    width: 60,
-                    height: 2,
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: const [
-                      ComboCard(
-                        comboAssetPath: 'assets/foods/honey-lime-combo.png',
-                        comboName: 'Honey lime combo',
-                        comboPrice: '2000',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      ComboCard(
-                        comboAssetPath: 'assets/foods/berry-mango-combo.png',
-                        comboName: 'Berry mango combo',
-                        comboPrice: '2000',
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
+            RecommendedCombo(),
+            const SizedBox(height: 40),
+            CategoryMenu(),
+            const SizedBox(height: 10),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CategoryMenu extends StatefulWidget {
+  const CategoryMenu({super.key});
+
+  @override
+  State<CategoryMenu> createState() => _CategoryMenuState();
+}
+
+class _CategoryMenuState extends State<CategoryMenu> {
+  final List<bool> _selectedMenu = <bool>[true, false, false];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        ToggleButtons(
+          renderBorder: false,
+          direction: Axis.horizontal,
+          onPressed: (int index) {
+            for (int i = 0; i < _selectedMenu.length; i++) {
+              _selectedMenu[i] = i == index;
+            }
+
+            switch (index) {
+              case 0:
+                productList = Product().hottest;
+                break;
+              case 1:
+                productList = Product().popular;
+                break;
+              case 2:
+                productList = Product().newCombo;
+                break;
+            }
+            setState(() {
+              productList;
+            });
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          selectedColor: Color(0xFF27214D),
+          fillColor: Colors.white,
+          color: Color(0xFFACB3BC),
+          constraints: const BoxConstraints(
+            minHeight: 20.0,
+            minWidth: 100.0,
+          ),
+          isSelected: _selectedMenu,
+          children: const [
+            MenuLabel(label: 'Hottest'),
+            MenuLabel(label: 'Popular'),
+            MenuLabel(label: 'New Combo'),
+          ],
+        ),
+        Container(
+          height: 160,
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            children: [
+              const SizedBox(width: 20),
+              for (var product in productList) product,
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MenuLabel extends StatefulWidget {
+  const MenuLabel({super.key, required this.label});
+
+  final String label;
+
+  @override
+  State<MenuLabel> createState() => _MenuLabelState();
+}
+
+class _MenuLabelState extends State<MenuLabel> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      widget.label,
+      style: GoogleFonts.poppins(fontSize: 16),
     );
   }
 }
