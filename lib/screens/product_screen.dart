@@ -17,12 +17,6 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final List<String> comboContains = [
-    'All',
-    'Salad Combo',
-    'Berry Combo',
-    'Mango Combo'
-  ];
 
   int productAmount = 1;
   @override
@@ -250,7 +244,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 );
                 Navigator.popAndPushNamed(
-                  context, '/home', arguments: usuario,
+                  context,
+                  '/home',
+                  arguments: usuario,
                 );
                 // Navigator.popAndPushNamed(
                 //   context,

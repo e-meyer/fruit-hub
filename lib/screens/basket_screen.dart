@@ -168,7 +168,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   Navigator.popAndPushNamed(
                     context,
                     '/checkout',
-                    arguments: User(user.name),
+                    arguments: usuario,
                   );
                 },
               ),
