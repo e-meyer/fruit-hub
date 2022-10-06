@@ -1,9 +1,11 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruithub/components/product_basket_card.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:fruithub/components/recom_combo_card.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
@@ -24,6 +26,8 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
   Random random = Random();
+  final User usuario = User('ed');
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,14 +38,34 @@ class _ProductCardState extends State<ProductCard> {
             random.nextInt(255),
             random.nextInt(255),
             random.nextInt(255),
-            0.05,
+            0.09,
           ),
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            '/product',
+            arguments: ComboCard(
+              usuario: usuario,
+              comboAssetPath: widget.productAssetPath,
+              comboName: widget.productName,
+              comboPrice: widget.productPrice,
+              comboBrief:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+              comboContains: [
+                'Lorem',
+                'Ipsum',
+                'Dolor Sit',
+                'Amet',
+                'Consectetur'
+              ],
+            ),
+          );
+        },
         child: Container(
           height: 200,
           child: Column(
@@ -63,26 +87,23 @@ class _ProductCardState extends State<ProductCard> {
                 ),
                 textAlign: TextAlign.center,
               ),
+              SizedBox(height: 5),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/money-sign.svg',
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        "${numberFormatter.format(widget.productPrice)}",
-                        style: GoogleFonts.poppins(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
+                  SvgPicture.asset(
+                    'assets/icons/money-sign.svg',
                   ),
+                  SizedBox(width: 5),
+                  Text(
+                    "${numberFormatter.format(widget.productPrice)}",
+                    style: GoogleFonts.poppins(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(width: 20),
                   CircleAvatar(
                     radius: 12,
                     backgroundColor: Color(0xFFFFF2E7),
@@ -90,7 +111,17 @@ class _ProductCardState extends State<ProductCard> {
                       splashRadius: 20,
                       padding: EdgeInsets.zero,
                       constraints: BoxConstraints(),
-                      onPressed: () {},
+                      onPressed: () {
+                        print(usuario.userProducts.length);
+                        usuario.addUserProduct(
+                          ProductBasketCard(
+                            productName: widget.productName,
+                            productAssetPath: widget.productAssetPath,
+                            productPrice: widget.productPrice,
+                            productQuantity: 1,
+                          ),
+                        );
+                      },
                       icon: Icon(
                         Icons.add,
                         size: 20,

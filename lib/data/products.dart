@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/product_card.dart';
+import 'package:fruithub/components/categorized_product_card.dart';
 
 class Product extends StatelessWidget {
   Product({super.key});

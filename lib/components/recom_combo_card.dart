@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruithub/components/product_basket_card.dart';
+import 'package:fruithub/data/products.dart';
+import 'package:fruithub/data/user.dart';
+import 'package:fruithub/screens/home_screen.dart';
+import 'package:fruithub/screens/product_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -9,11 +14,17 @@ class ComboCard extends StatefulWidget {
     required this.comboAssetPath,
     required this.comboName,
     required this.comboPrice,
+    required this.usuario,
+    required this.comboContains,
+    required this.comboBrief,
   });
 
   final String comboAssetPath;
   final String comboName;
-  final String comboPrice;
+  final double comboPrice;
+  final User usuario;
+  final List<String> comboContains;
+  final String comboBrief;
 
   @override
   State<ComboCard> createState() => ComboCardState();
@@ -73,7 +84,7 @@ class ComboCardState extends State<ComboCard> {
                         SvgPicture.asset('assets/icons/money-sign.svg'),
                         SizedBox(width: 5),
                         Text(
-                          "${numberFormatter.format(int.parse(widget.comboPrice))}",
+                          "${numberFormatter.format(widget.comboPrice)}",
                           style: GoogleFonts.poppins(
                             color: Theme.of(context).primaryColor,
                             fontSize: 14,
@@ -88,12 +99,21 @@ class ComboCardState extends State<ComboCard> {
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
-                        onPressed: () {},
                         icon: Icon(
                           Icons.add,
                           size: 20,
                         ),
                         color: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          widget.usuario.addUserProduct(
+                            ProductBasketCard(
+                              productName: widget.comboName,
+                              productAssetPath: widget.comboAssetPath,
+                              productPrice: widget.comboPrice,
+                              productQuantity: 1,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -104,7 +124,30 @@ class ComboCardState extends State<ComboCard> {
               )
             ],
           ),
-          onPressed: () {},
+          onPressed: () {
+            // Map args = {
+            //   'usuario': usuario,
+            //   'product': ComboCard(
+            //     comboAssetPath: widget.comboAssetPath,
+            //     comboName: widget.comboName,
+            //     usuario: widget.usuario,
+            //     comboPrice: widget.comboPrice,
+            //     comboBrief: widget.comboBrief,
+            //     comboContains: widget.comboContains,
+            //   ),
+            // };
+            Navigator.pushNamed(context, '/product', arguments: {
+              'usuario': usuario,
+              'product': ComboCard(
+                comboAssetPath: widget.comboAssetPath,
+                comboName: widget.comboName,
+                usuario: widget.usuario,
+                comboPrice: widget.comboPrice,
+                comboBrief: widget.comboBrief,
+                comboContains: widget.comboContains,
+              ),
+            });
+          },
         ),
       ),
     );

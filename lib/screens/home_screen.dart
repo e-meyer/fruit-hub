@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fruithub/components/categorized_meals.dart';
-import 'package:fruithub/components/product_card.dart';
+import 'package:fruithub/components/filter_card.dart';
 import 'package:fruithub/components/filter_list.dart';
+import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/components/recom_combo_structure.dart';
 import 'package:fruithub/components/searchbar.dart';
-import 'package:fruithub/data/products.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../data/user.dart';
+
+final usuario = User('Chris');
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,12 +19,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> filters = [
-    'All',
-    'Salad Combo',
-    'Berry Combo',
-    'Mango Combo'
-  ];
+  @override
+  void initState() {
+    super.initState();
+    usuario.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 radius: 25,
                 backgroundColor: Color(0xFFFFFFFF),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print(usuario.userProducts.length);
+                    Navigator.pushNamed(
+                      context,
+                      '/basket',
+                      arguments: usuario,
+                    );
+                  },
                   icon: SvgPicture.asset(
                     'assets/icons/shopping-basket.svg',
                   ),
@@ -84,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Container(
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             const SizedBox(height: 15),
             Padding(
@@ -116,23 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 15),
-            Container(
-              height: 40,
-              color: Color(0xFFFAFAFA),
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  const SizedBox(width: 20),
-                  for (var filter in filters) FilterList(filterName: filter),
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
+            FilterList(),
             const SizedBox(height: 40),
-            RecommendedCombo(),
+            RecommendedCombo(user: usuario),
             const SizedBox(height: 40),
-            CategorizedMeals(),
+            CategorizedMeals(user: usuario),
             const SizedBox(height: 10),
           ],
         ),

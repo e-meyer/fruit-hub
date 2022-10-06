@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fruithub/components/recom_combo_card.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RecommendedCombo extends StatefulWidget {
-  const RecommendedCombo({super.key});
+  const RecommendedCombo({super.key, required this.user});
+
+  final User user;
 
   @override
   State<RecommendedCombo> createState() => _RecommendedComboState();
@@ -34,11 +37,23 @@ class _RecommendedComboState extends State<RecommendedCombo> {
           ),
           const SizedBox(height: 10),
           Row(
-            children: const [
+            children: [
               ComboCard(
                 comboAssetPath: 'assets/foods/honey-lime-combo.png',
                 comboName: 'Honey lime combo',
-                comboPrice: '2000',
+                comboPrice: 2000,
+                usuario: widget.user,
+                comboBrief:
+                    'If you are looking for a new fruit salad to eat today, quinoa is the perfect brunch for you to make',
+                comboContains: const [
+                  'Red Quinoa',
+                  'Watermelon',
+                  'Fresh Mint',
+                  'Strawberries',
+                  'Honey',
+                  'Limes',
+                  'Blueberries'
+                ],
               ),
               SizedBox(
                 width: 20,
@@ -46,10 +61,21 @@ class _RecommendedComboState extends State<RecommendedCombo> {
               ComboCard(
                 comboAssetPath: 'assets/foods/berry-mango-combo.png',
                 comboName: 'Berry mango combo',
-                comboPrice: '2000',
+                comboPrice: 2000,
+                usuario: widget.user,
+                comboBrief:
+                    'Honey lime is the perfect brunch for you to make if you are looking for a new fruit salad to eat today',
+                comboContains: const [
+                  'Vanilla Yogurt',
+                  'Banana',
+                  'Mixed Berries',
+                  'Orange Juice',
+                  'Limes',
+                  'Melon'
+                ],
               ),
             ],
-          )
+          ),
         ],
       ),
     );

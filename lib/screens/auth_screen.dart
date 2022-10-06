@@ -120,8 +120,13 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamed(context, '/home',
-                                  arguments: User(_username.text));
+                              Navigator.pushNamed(
+                                context,
+                                '/home',
+                                arguments: User(
+                                  _username.text,
+                                ),
+                              );
                             }
                           },
                         ),

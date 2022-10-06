@@ -42,7 +42,7 @@ class _CategorizedMenuState extends State<CategorizedMenu> {
       children: const [
         CategoryMealsLabel(label: 'Hottest'),
         CategoryMealsLabel(label: 'Popular'),
-        CategoryMealsLabel(label: 'New Combo'),
+        CategoryMealsLabel(label: 'Combo'),
       ],
     );
   }

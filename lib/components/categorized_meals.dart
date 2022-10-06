@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fruithub/components/categorized_meals_labels.dart';
 import 'package:fruithub/components/categorized_menu.dart';
 import 'package:fruithub/data/products.dart';
+import 'package:fruithub/data/user.dart';
 
 class CategorizedMeals extends StatefulWidget {
-  const CategorizedMeals({super.key});
+  const CategorizedMeals({super.key, required this.user});
+
+  final User user;
 
   @override
   State<CategorizedMeals> createState() => _CategorizedMealsState();

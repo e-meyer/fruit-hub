@@ -8,7 +8,7 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //var user = ModalRoute.of(context)!.settings.arguments as User;
+    var user = ModalRoute.of(context)!.settings.arguments as User;
 
     return Scaffold(
       body: Center(
@@ -53,8 +53,12 @@ class CheckoutScreen extends StatelessWidget {
                     vertical: 15,
                   )),
               onPressed: () {
-                // Navigator.pushNamed(context, '/home',
-                //     arguments: User(user.name));
+                user.resetUserProduct();
+                Navigator.popAndPushNamed(
+                  context,
+                  '/home',
+                  arguments: user,
+                );
               },
               child: Text(
                 "Continue shopping",

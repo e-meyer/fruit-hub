@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruithub/screens/auth_screen.dart';
+import 'package:fruithub/screens/basket_screen.dart';
 import 'package:fruithub/screens/checkout_screen.dart';
 import 'package:fruithub/screens/home_screen.dart';
 import 'package:fruithub/screens/product_screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fruit Hub',
       theme: ThemeData(
-        primaryColor: Color(0xFFFFA451),
+        primaryColor: Color(0xFFffa451),
       ),
       initialRoute: '/',
       routes: {
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/auth': (context) => const AuthScreen(),
         '/home': (context) => const HomeScreen(),
         '/product': (context) => const ProductScreen(),
+        '/basket': (context) => const BasketScreen(),
         '/checkout': (context) => const CheckoutScreen(),
       },
     );
