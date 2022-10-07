@@ -25,7 +25,6 @@ class _BasketScreenState extends State<BasketScreen> {
     double total = 0;
 
     calculatesTotal() {
-      print('fdpp + ${user.userProducts.length}');
       for (var u in user.userProducts) {
         total += u.productPrice;
       }

@@ -17,7 +17,6 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-
   int productAmount = 1;
   @override
   Widget build(BuildContext context) {
@@ -55,12 +54,27 @@ class _ProductScreenState extends State<ProductScreen> {
               height: height * 0.40,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: Image.asset(
-                    product.comboAssetPath,
-                    height: 176,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          GoBackButton(user: usuario),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        product.comboAssetPath,
+                        height: 176,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -206,7 +220,7 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+        padding: const EdgeInsets.fromLTRB(25, 15, 25, 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -243,16 +257,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     productQuantity: productAmount,
                   ),
                 );
-                Navigator.popAndPushNamed(
-                  context,
-                  '/home',
-                  arguments: usuario,
-                );
-                // Navigator.popAndPushNamed(
-                //   context,
-                //   '/checkout',
-                //   arguments: usuario,
-                // );
               },
             ),
           ],

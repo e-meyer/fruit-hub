@@ -13,11 +13,13 @@ class ProductCard extends StatefulWidget {
     required this.productAssetPath,
     required this.productName,
     required this.productPrice,
+    required this.user,
   });
 
   final String productAssetPath;
   final String productName;
   final double productPrice;
+  final User user;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -26,7 +28,6 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
   Random random = Random();
-  User usuario = User('ed');
 
   @override
   Widget build(BuildContext context) {
@@ -46,27 +47,24 @@ class _ProductCardState extends State<ProductCard> {
           ),
         ),
         onPressed: () {
-          // Navigator.pushNamed(
-          //   context,
-          //   '/product',
-          //   arguments: {
-          //     'product': ComboCard(
-          //     usuario: usuario,
-          //     comboAssetPath: widget.productAssetPath,
-          //     comboName: widget.productName,
-          //     comboPrice: widget.productPrice,
-          //     comboBrief:
-          //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-          //     comboContains: [
-          //       'Lorem',
-          //       'Ipsum',
-          //       'Dolor Sit',
-          //       'Amet',
-          //       'Consectetur'
-          //     ],
-          //   ),
-          //   }
-          // );
+          Navigator.pushNamed(context, '/product', arguments: {
+            'usuario': widget.user,
+            'product': ComboCard(
+              usuario: widget.user,
+              comboAssetPath: widget.productAssetPath,
+              comboName: widget.productName,
+              comboPrice: widget.productPrice,
+              comboBrief:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+              comboContains: [
+                'Lorem',
+                'Ipsum',
+                'Dolor Sit',
+                'Amet',
+                'Consectetur'
+              ],
+            ),
+          });
         },
         child: Container(
           height: 200,
@@ -114,8 +112,8 @@ class _ProductCardState extends State<ProductCard> {
                       padding: EdgeInsets.zero,
                       constraints: BoxConstraints(),
                       onPressed: () {
-                        print(usuario.userProducts.length);
-                        usuario.addUserProduct(
+                        print(widget.user.userProducts.length);
+                        widget.user.addUserProduct(
                           ProductBasketCard(
                             productName: widget.productName,
                             productAssetPath: widget.productAssetPath,

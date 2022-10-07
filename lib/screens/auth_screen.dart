@@ -124,7 +124,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 context,
                                 '/home',
                                 arguments: User(
-                                  _username.text,
+                                  _username.text
                                 ),
                               );
                             }

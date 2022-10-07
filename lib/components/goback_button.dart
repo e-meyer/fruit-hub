@@ -25,6 +25,7 @@ class GoBackButton extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         minimumSize: Size.zero, // Set this
+        
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       ),
       child: Row(

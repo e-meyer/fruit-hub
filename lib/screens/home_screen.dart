@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruithub/components/categorized_meals.dart';
-import 'package:fruithub/components/filter_card.dart';
 import 'package:fruithub/components/filter_list.dart';
-import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/components/recom_combo_structure.dart';
 import 'package:fruithub/components/searchbar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -74,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Color(0xFFFFFFFF),
                 child: IconButton(
                   onPressed: () {
-                    print(usuario.userProducts.length);
                     Navigator.pushNamed(
                       context,
                       '/basket',
@@ -132,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 40),
             RecommendedCombo(user: usuario),
             const SizedBox(height: 40),
-            RecommendedCombo(user: usuario),
-            // CategorizedMeals(user: usuario),
+            // RecommendedCombo(user: usuario),
+            CategorizedMeals(user: usuario),
             const SizedBox(height: 10),
           ],
         ),

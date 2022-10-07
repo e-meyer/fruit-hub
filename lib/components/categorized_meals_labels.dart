@@ -13,9 +13,12 @@ class CategoryMealsLabel extends StatefulWidget {
 class _CategoryMealsLabelState extends State<CategoryMealsLabel> {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      widget.label,
-      style: GoogleFonts.poppins(fontSize: 16),
+    return Padding(
+      padding: EdgeInsets.only(right: 14),
+      child: Text(
+        widget.label,
+        style: GoogleFonts.poppins(fontSize: 16),
+      ),
     );
   }
 }
