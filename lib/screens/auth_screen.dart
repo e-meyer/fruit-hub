@@ -23,7 +23,9 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Color(0xFFFFFFFF),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -41,12 +43,10 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             Container(
               color: Color(0xFFFFFFFF),
-              height: height * 0.40,
               child: Align(
                 alignment: FractionalOffset.topLeft,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                  padding: const EdgeInsets.fromLTRB(25, 40, 25, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -101,42 +101,41 @@ class _AuthScreenState extends State<AuthScreen> {
                           }),
                         ),
                       ),
-                      SizedBox(height: 60),
-                      Container(
-                        child: ElevatedButton(
-                          child: Text(
-                            "Start Ordering",
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
-                            backgroundColor: Color(0xFFFFA451),
-                            elevation: 0,
-                            minimumSize: Size.fromHeight(40),
-                          ),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamed(
-                                context,
-                                '/home',
-                                arguments: User(
-                                  _username.text
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
+                      //SizedBox(height: 60),
                     ],
                   ),
                 ),
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            padding: EdgeInsets.symmetric(vertical: 15.0),
+            backgroundColor: Color(0xFFFFA451),
+            elevation: 0,
+            minimumSize: Size.fromHeight(40),
+          ),
+          child: Text(
+            "Start Ordering",
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+            ),
+          ),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              Navigator.pushNamed(
+                context,
+                '/home',
+                arguments: User(_username.text),
+              );
+            }
+          },
         ),
       ),
     );
