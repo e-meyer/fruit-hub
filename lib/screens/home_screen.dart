@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruithub/components/categorized_meals.dart';
 import 'package:fruithub/components/filter_list.dart';
+import 'package:fruithub/components/navbar.dart';
 import 'package:fruithub/components/recom_combo_structure.dart';
 import 'package:fruithub/components/searchbar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,8 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // recieves argument from last screen and stores it in user
     var user = ModalRoute.of(context)!.settings.arguments as User;
-
+    print(user.name);
     return Scaffold(
+      drawer: NavBar(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         titleSpacing: 0,
@@ -41,15 +43,19 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 14,
           ),
         ),
-        leading: IconButton(
-          splashRadius: 20,
-          icon: SvgPicture.asset(
-            'assets/icons/menu.svg',
-            color: Colors.black,
+        leading: Builder(
+          builder: (context) => IconButton(
+            splashRadius: 20,
+            icon: SvgPicture.asset(
+              'assets/icons/menu.svg',
+              color: Colors.black,
+            ),
+            iconSize: 100,
+            color: Color(0xFF070648),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
           ),
-          iconSize: 100,
-          color: Color(0xFF070648),
-          onPressed: () {},
         ),
         actions: [
           Padding(

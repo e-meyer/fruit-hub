@@ -13,12 +13,14 @@ class ProductCard extends StatefulWidget {
     required this.productAssetPath,
     required this.productName,
     required this.productPrice,
+    required this.productColor,
     required this.user,
   });
 
   final String productAssetPath;
   final String productName;
   final double productPrice;
+  final Color productColor;
   final User user;
 
   @override
@@ -35,12 +37,7 @@ class _ProductCardState extends State<ProductCard> {
       padding: const EdgeInsets.fromLTRB(0, 5, 15, 5),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromRGBO(
-            random.nextInt(255),
-            random.nextInt(255),
-            random.nextInt(255),
-            0.09,
-          ),
+          backgroundColor: widget.productColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),

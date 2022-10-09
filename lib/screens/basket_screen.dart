@@ -47,11 +47,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   ElevatedButton(
                     onPressed: () {
                       print(user.userProducts);
-                      Navigator.popAndPushNamed(
-                        context,
-                        '/home',
-                        arguments: user,
-                      );
+                      Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

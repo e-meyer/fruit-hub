@@ -54,11 +54,7 @@ class CheckoutScreen extends StatelessWidget {
                   )),
               onPressed: () {
                 user.resetUserProduct();
-                Navigator.popAndPushNamed(
-                  context,
-                  '/home',
-                  arguments: user,
-                );
+                Navigator.pop(context);
               },
               child: Text(
                 "Continue shopping",

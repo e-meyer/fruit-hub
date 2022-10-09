@@ -67,11 +67,14 @@ class _ProductScreenState extends State<ProductScreen> {
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        product.comboAssetPath,
-                        height: 176,
+                    Hero(
+                      tag: 'productImage',
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          product.comboAssetPath,
+                          height: 176,
+                        ),
                       ),
                     ),
                   ],
