@@ -30,16 +30,11 @@ class Product extends StatefulWidget {
 }
 
 class _ProductState extends State<Product> {
-  // void _removeFromList(String prodName) {
-  //   setState(() {
-  //     widget.user.removeUserProduct(prodName);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
     Random random = Random();
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: Row(
@@ -123,9 +118,7 @@ class _ProductState extends State<Product> {
                 Icons.remove,
                 size: 24,
               ),
-              onPressed: () {
-                // _removeFromList(widget.productName);
-              },
+              onPressed: () {},
             ),
           ),
         ],

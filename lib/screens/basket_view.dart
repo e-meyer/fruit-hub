@@ -161,7 +161,8 @@ class _BasketScreenState extends State<BasketScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 60),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 15.0, horizontal: width * 0.15),
                   backgroundColor: Color(0xFFFFA451),
                   elevation: 0,
                 ),

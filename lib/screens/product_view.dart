@@ -17,7 +17,6 @@ class _ProductScreenState extends State<ProductScreen> {
   int productAmount = 1;
   @override
   Widget build(BuildContext context) {
-    // var user = ModalRoute.of(context)!.settings.arguments as User;
     NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     var user = args['user'];

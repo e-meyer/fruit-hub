@@ -38,6 +38,7 @@ class _RecommendedComboState extends State<RecommendedCombo> {
           ),
           const SizedBox(height: 10),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RecommendedComboCard(
                 user: widget.user,
@@ -58,9 +59,6 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                     'Blueberries'
                   ],
                 ),
-              ),
-              const SizedBox(
-                width: 20,
               ),
               RecommendedComboCard(
                 user: widget.user,

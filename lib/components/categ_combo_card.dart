@@ -49,8 +49,10 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
         },
         child: Container(
           height: 200,
+          width: 115,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Stack(
                 children: [
@@ -89,22 +91,25 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    'assets/icons/money-sign.svg',
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/money-sign.svg',
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        numberFormatter.format(widget.product.productPrice),
+                        style: GoogleFonts.poppins(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 5),
-                  Text(
-                    numberFormatter.format(widget.product.productPrice),
-                    style: GoogleFonts.poppins(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(width: 20),
                   CircleAvatar(
                     radius: 12,
-                    backgroundColor: Color(0xFFFFF2E7),
+                    backgroundColor: Color(0xFFFFE3C9),
                     child: IconButton(
                       icon: const Icon(
                         Icons.add,
