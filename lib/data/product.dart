@@ -68,7 +68,7 @@ class _ProductState extends State<Product> {
                   ),
                 ),
               ),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               SizedBox(
                 height: 66,
                 child: Column(
@@ -79,7 +79,7 @@ class _ProductState extends State<Product> {
                       widget.productName,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: Color(0xFF333333),
+                        color: const Color(0xFF333333),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -87,7 +87,7 @@ class _ProductState extends State<Product> {
                       "${widget.productAmount.toString()}packs",
                       style: GoogleFonts.poppins(
                         fontSize: 12,
-                        color: Color(0xFF000000),
+                        color: const Color(0xFF000000),
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -95,16 +95,16 @@ class _ProductState extends State<Product> {
                       children: [
                         SvgPicture.asset(
                           'assets/icons/money-sign.svg',
-                          color: Color(0xFF27214D),
+                          color: const Color(0xFF27214D),
                           height: 12,
                         ),
                         const SizedBox(width: 5),
                         Text(
                           numberFormatter.format(widget.productPrice),
                           style: GoogleFonts.poppins(
-                            color: Color(0xFF27214D),
+                            color: const Color(0xFF27214D),
                             fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -115,8 +115,8 @@ class _ProductState extends State<Product> {
             ],
           ),
           CircleAvatar(
-            backgroundColor: Color(0xFFFFF2E7),
-            foregroundColor: Color(0xFFFFA451),
+            backgroundColor: const Color(0xFFFFF2E7),
+            foregroundColor: const Color(0xFFFFA451),
             radius: 20,
             child: IconButton(
               padding: EdgeInsets.zero,

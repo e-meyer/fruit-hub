@@ -43,12 +43,29 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 15),
-                child: Image.asset(
-                  widget.product.productAssetPath,
-                  width: 80,
-                ),
+              Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16, left: 105),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
+                      icon: SvgPicture.asset(
+                        'assets/icons/heart.svg',
+                        color: Theme.of(context).primaryColor,
+                        height: 16,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 25, 25, 15),
+                    child: Image.asset(
+                      widget.product.productAssetPath,
+                      width: 80,
+                    ),
+                  ),
+                ],
               ),
               Text(
                 widget.product.productName,

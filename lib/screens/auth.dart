@@ -23,13 +23,13 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
-              color: Color(0xFFFFA451),
+              color: const Color(0xFFFFA451),
               height: height * 0.60,
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
@@ -42,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
             Container(
-              color: Color(0xFFFFFFFF),
+              color: const Color(0xFFFFFFFF),
               height: height * 0.40,
               child: Align(
                 alignment: FractionalOffset.topLeft,
@@ -56,16 +56,17 @@ class _AuthScreenState extends State<AuthScreen> {
                           "What is your first name?",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: Color(0xFF27214D),
+                            color: const Color(0xFF27214D),
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Form(
                           key: _formKey,
                           child: TextFormField(
                             style: GoogleFonts.poppins(
                               fontSize: 16,
-                              color: Color(0xFF5D577E),
+                              color: const Color(0xFF5D577E),
                               fontWeight: FontWeight.w600,
                             ),
                             maxLength: 16,
@@ -81,7 +82,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                               counterText: "",
                               filled: true,
-                              fillColor: Color(0xFFF7F5F5),
+                              fillColor: const Color(0xFFF7F5F5),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: const BorderSide(
@@ -111,9 +112,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                   borderRadius: BorderRadius.circular(10.0)),
                               padding:
                                   const EdgeInsets.symmetric(vertical: 15.0),
-                              backgroundColor: Color(0xFFFFA451),
+                              backgroundColor: const Color(0xFFFFA451),
                               elevation: 0,
-                              minimumSize: Size.fromHeight(40),
+                              minimumSize: const Size.fromHeight(40),
                             ),
                             child: Text(
                               "Start Ordering",

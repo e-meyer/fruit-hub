@@ -45,12 +45,29 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 0, 25, 15),
-                child: Image.asset(
-                  widget.product.productAssetPath,
-                  width: 64,
-                ),
+              Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 90),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
+                      icon: SvgPicture.asset(
+                        'assets/icons/heart.svg',
+                        color: Theme.of(context).primaryColor,
+                        height: 16,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 10, 25, 15),
+                    child: Image.asset(
+                      widget.product.productAssetPath,
+                      height: 64,
+                    ),
+                  ),
+                ],
               ),
               Text(
                 widget.product.productName,
