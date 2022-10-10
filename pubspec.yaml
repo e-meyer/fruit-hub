@@ -53,7 +53,7 @@ dev_dependencies:
   flutter_native_splash: ^2.0.1+1
 
 flutter_native_splash:
-  image: 'assets/splash_screen.png'
+  image: 'assets/splash-screen.png'
   color: '#ffffff'
 
 # For information on the generic Dart part of this file, see the
