@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruithub/components/basket_button.dart';
 import 'package:fruithub/components/categ_combo.dart';
 import 'package:fruithub/components/filter_list.dart';
 import 'package:fruithub/components/navbar.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'Welcome, ${user.name}.',
           style: GoogleFonts.poppins(
-            color: Color(0xFF27214D),
+            color: const Color(0xFF27214D),
             fontSize: 14,
           ),
         ),
@@ -51,95 +52,63 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.black,
             ),
             iconSize: 100,
-            color: Color(0xFF070648),
+            color: const Color(0xFF070648),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 1,
-                    color: Colors.grey,
-                    spreadRadius: 0,
-                    offset: Offset(0, 0.5),
-                  )
-                ],
-              ),
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: Color(0xFFFFFFFF),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/basket',
-                      arguments: usuario,
-                    );
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/shopping-basket.svg',
-                  ),
-                ),
-              ),
-            ),
+          BasketButton(
+            user: usuario,
           ),
         ],
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Container(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            const SizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Row(
-                children: [
-                  const Flexible(
-                    child: SearchBar(),
-                  ),
-                  SizedBox(width: 5),
-                  Container(
-                    decoration: const ShapeDecoration(
-                      color: Color(0xFFF7F7FC),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                    child: IconButton(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 16),
-                      constraints: BoxConstraints(),
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                        'assets/icons/filter.svg',
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              children: [
+                const Flexible(
+                  child: SearchBar(),
+                ),
+                const SizedBox(width: 5),
+                Container(
+                  decoration: const ShapeDecoration(
+                    color: Color(0xFFF7F7FC),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
                       ),
                     ),
                   ),
-                ],
-              ),
+                  child: IconButton(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 16),
+                    constraints: const BoxConstraints(),
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      'assets/icons/filter.svg',
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            FilterList(),
-            const SizedBox(height: 40),
-            RecommendedCombo(user: usuario),
-            const SizedBox(height: 40),
-            // RecommendedCombo(user: usuario),
-            CategorizedCombo(user: usuario),
-            const SizedBox(height: 10),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          FilterList(),
+          const SizedBox(height: 40),
+          RecommendedCombo(user: usuario),
+          const SizedBox(height: 40),
+          // RecommendedCombo(user: usuario),
+          CategorizedCombo(user: usuario),
+          const SizedBox(height: 10),
+        ],
       ),
     );
   }
