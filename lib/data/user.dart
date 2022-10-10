@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fruithub/data/product.dart';
 
 class User extends ChangeNotifier {
-  final String name;
   List<Product> userProducts = [];
   var toRemove = [];
 
@@ -25,6 +24,4 @@ class User extends ChangeNotifier {
     userProducts = [];
     notifyListeners();
   }
-
-  User(this.name);
 }

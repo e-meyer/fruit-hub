@@ -9,8 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../data/user.dart';
 
-final usuario = User('Chris');
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -19,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final usuario = User();
+
   @override
   void initState() {
     super.initState();
@@ -29,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // recieves argument from last screen and stores it in user
-    var user = ModalRoute.of(context)!.settings.arguments as User;
+    // recieves argument from last screen and stores it in the string
+    var userName = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       drawer: NavBar(),
@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         titleSpacing: 0,
         title: Text(
-          'Welcome, ${user.name}.',
-          style: GoogleFonts.poppins(
+          'Welcome, $userName.',
+          style: GoogleFonts.nunito(
             color: const Color(0xFF27214D),
             fontSize: 14,
           ),
