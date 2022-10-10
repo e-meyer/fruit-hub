@@ -94,7 +94,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         product.productName,
                         style: GoogleFonts.poppins(
                           fontSize: 24,
-                          color: Color(0xFF27214D),
+                          color: const Color(0xFF27214D),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -106,12 +106,12 @@ class _ProductScreenState extends State<ProductScreen> {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundColor: Color(0xFFFFF2E7),
-                                foregroundColor: Color(0xFFFFA451),
+                                backgroundColor: const Color(0xFFFFF2E7),
+                                foregroundColor: const Color(0xFFFFA451),
                                 radius: 14,
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
-                                  constraints: BoxConstraints(),
+                                  constraints: const BoxConstraints(),
                                   icon: const Icon(
                                     Icons.remove,
                                     size: 18,
@@ -124,13 +124,13 @@ class _ProductScreenState extends State<ProductScreen> {
                                 "$productAmount",
                                 style: GoogleFonts.poppins(
                                   fontSize: 24,
-                                  color: Color(0xFF27214D),
+                                  color: const Color(0xFF27214D),
                                 ),
                               ),
                               const SizedBox(width: 25),
                               CircleAvatar(
-                                backgroundColor: Color(0xFFFFF2E7),
-                                foregroundColor: Color(0xFFFFA451),
+                                backgroundColor: const Color(0xFFFFF2E7),
+                                foregroundColor: const Color(0xFFFFA451),
                                 radius: 14,
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
@@ -149,7 +149,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               SvgPicture.asset(
                                 'assets/icons/money-sign.svg',
                                 height: 16,
-                                color: Color(0xFF27214D),
+                                color: const Color(0xFF27214D),
                               ),
                               const SizedBox(width: 8),
                               Text(
@@ -169,13 +169,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         width: double.infinity,
                         height: 1,
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                       ),
                       const SizedBox(height: 15),
                       Text(
                         "This combo contains: ",
                         style: GoogleFonts.poppins(
-                          color: Color(0xFF27214D),
+                          color: const Color(0xFF27214D),
                           fontSize: 18,
                         ),
                       ),
@@ -196,7 +196,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         width: double.infinity,
                         height: 1,
-                        color: Color(0xFFF3F3F3),
+                        color: const Color(0xFFF3F3F3),
                       ),
                       const SizedBox(height: 15),
                       Text(
@@ -227,7 +227,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 15.0, horizontal: 60),
-                                backgroundColor: Color(0xFFFFA451),
+                                backgroundColor: const Color(0xFFFFA451),
                                 elevation: 0,
                               ),
                               child: Text(
@@ -257,7 +257,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           product.productPrice * productAmount,
                                       productAmount: productAmount,
                                       productBrief: '',
-                                      productContains: [],
+                                      productContains: const [],
                                       user: product.user,
                                     ),
                                   );
