@@ -17,7 +17,9 @@ class _CategoryMealsLabelState extends State<CategoryMealsLabel> {
       padding: const EdgeInsets.only(right: 14),
       child: Text(
         widget.label,
-        style: GoogleFonts.poppins(fontSize: 16),
+        style: GoogleFonts.nunito(
+          fontSize: 16,
+        ),
       ),
     );
   }

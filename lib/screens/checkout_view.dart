@@ -19,8 +19,8 @@ class CheckoutScreen extends StatelessWidget {
             const SizedBox(height: 40),
             Text(
               'Order Taken',
-              style: GoogleFonts.poppins(
-                color: Color(0xFF27214D),
+              style: GoogleFonts.nunito(
+                color: const Color(0xFF27214D),
                 fontSize: 32,
               ),
             ),
@@ -29,9 +29,9 @@ class CheckoutScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: Text(
                 'Your order have been taken and is being attended to',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.nunito(
                   color: const Color(0xFF111111),
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
@@ -54,7 +54,7 @@ class CheckoutScreen extends StatelessWidget {
               },
               child: Text(
                 "Continue shopping",
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.nunito(
                   fontSize: 16,
                 ),
               ),

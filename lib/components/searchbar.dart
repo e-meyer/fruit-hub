@@ -13,10 +13,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: GoogleFonts.poppins(
+      style: GoogleFonts.nunito(
         fontSize: 12,
         color: const Color(0xFF5D577E),
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
       ),
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
