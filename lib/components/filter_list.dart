@@ -14,7 +14,7 @@ class FilterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 45,
       color: const Color(0xFFFAFAFA),
       child: ListView(
         physics: BouncingScrollPhysics(),

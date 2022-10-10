@@ -10,20 +10,34 @@ class FilterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 5, 8, 5),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          elevation: 1,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 2,
+              color: Color.fromRGBO(0, 0, 0, 0.2),
+              spreadRadius: 0,
+              offset: Offset(0, 1),
+            ),
+          ],
         ),
-        onPressed: () {},
-        child: Text(
-          filterName,
-          style: GoogleFonts.poppins(
-            color: const Color(0xFF333333),
-            fontSize: 14,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            filterName,
+            style: GoogleFonts.poppins(
+              color: const Color(0xFF333333),
+              fontSize: 14,
+            ),
           ),
         ),
       ),
