@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fruithub/data/product.dart';
 
 class User extends ChangeNotifier {

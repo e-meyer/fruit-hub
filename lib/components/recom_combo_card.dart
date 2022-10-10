@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home.dart';
+import 'package:fruithub/screens/home_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -113,18 +113,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                         ),
                         color: Theme.of(context).primaryColor,
                         onPressed: () {
-                          bool isInList = false;
-                          usuario.userProducts.forEach((item) {
-                            if (item.productName ==
-                                widget.product.productName) {
-                              item.productAmount += 1;
-                              item.productPrice += widget.product.productPrice;
-                              isInList = true;
-                            }
-                          });
-                          if (!isInList) {
-                            widget.user.addUserProduct(widget.product);
-                          }
+                          _addProductToBasket();
                         },
                       ),
                     ),
@@ -150,5 +139,19 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
         ),
       ),
     );
+  }
+
+  void _addProductToBasket() {
+    bool isInList = false;
+    for (var item in widget.user.userProducts) {
+      if (item.productName == widget.product.productName) {
+        item.productAmount += 1;
+        item.productPrice += widget.product.productPrice;
+        isInList = true;
+      }
+    }
+    if (!isInList) {
+      widget.user.addUserProduct(widget.product);
+    }
   }
 }

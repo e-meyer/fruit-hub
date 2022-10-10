@@ -115,17 +115,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       constraints: BoxConstraints(),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        bool isInList = false;
-                        for (var item in widget.user.userProducts) {
-                          if (item.productName == widget.product.productName) {
-                            item.productAmount += 1;
-                            item.productPrice += widget.product.productPrice;
-                            isInList = true;
-                          }
-                        }
-                        if (!isInList) {
-                          widget.user.addUserProduct(widget.product);
-                        }
+                        _addProductToBasket();
                       },
                     ),
                   ),
@@ -136,5 +126,19 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
         ),
       ),
     );
+  }
+
+  void _addProductToBasket() {
+    bool isInList = false;
+    for (var item in widget.user.userProducts) {
+      if (item.productName == widget.product.productName) {
+        item.productAmount += 1;
+        item.productPrice += widget.product.productPrice;
+        isInList = true;
+      }
+    }
+    if (!isInList) {
+      widget.user.addUserProduct(widget.product);
+    }
   }
 }

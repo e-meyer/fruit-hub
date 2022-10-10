@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/screens/auth.dart';
-import 'package:fruithub/screens/basket.dart';
-import 'package:fruithub/screens/checkout.dart';
-import 'package:fruithub/screens/home.dart';
-import 'package:fruithub/screens/product.dart';
-import 'package:fruithub/screens/welcome.dart';
+import 'package:fruithub/screens/auth_view.dart';
+import 'package:fruithub/screens/basket_view.dart';
+import 'package:fruithub/screens/checkout_view.dart';
+import 'package:fruithub/screens/home_view.dart';
+import 'package:fruithub/screens/product_view.dart';
+import 'package:fruithub/screens/welcome_view.dart';
 
 void main() {
   runApp(const FruitHub());

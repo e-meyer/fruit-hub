@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/goback_button.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home.dart';
+import 'package:fruithub/screens/home_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
