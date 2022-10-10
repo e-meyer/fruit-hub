@@ -10,7 +10,6 @@ class Product extends StatefulWidget {
   final String productAssetPath;
   final String productBrief;
   final List<String> productContains;
-  final User user;
   double productPrice;
   int productAmount;
   Color? productColor;
@@ -23,7 +22,6 @@ class Product extends StatefulWidget {
     required this.productPrice,
     required this.productName,
     required this.productAmount,
-    required this.user,
     this.productColor,
   });
 

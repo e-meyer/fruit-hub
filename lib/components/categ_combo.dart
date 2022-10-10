@@ -55,6 +55,7 @@ class _CategorizedComboState extends State<CategorizedCombo> {
               children: [
                 const SizedBox(width: 20),
                 CategorizedComboCard(
+                  user: widget.user,
                   product: Product(
                     productName: 'Quinoa fruit salad',
                     productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
@@ -70,10 +71,10 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                       'Amet',
                       'Consectetur'
                     ],
-                    user: widget.user,
                   ),
                 ),
                 CategorizedComboCard(
+                  user: widget.user,
                   product: Product(
                     productName: 'Tropical fruit salad',
                     productAssetPath: 'assets/foods/bread-eggs.png',
@@ -89,10 +90,10 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                       'Amet',
                       'Consectetur'
                     ],
-                    user: widget.user,
                   ),
                 ),
                 CategorizedComboCard(
+                  user: widget.user,
                   product: Product(
                     productName: 'Fruit mix combo',
                     productAssetPath: 'assets/foods/fruit-mix-1.png',
@@ -108,10 +109,10 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                       'Amet',
                       'Consectetur'
                     ],
-                    user: widget.user,
                   ),
                 ),
                 CategorizedComboCard(
+                  user: widget.user,
                   product: Product(
                     productName: 'Cooked fruit salad',
                     productAssetPath: 'assets/foods/fruit-mix-2.png',
@@ -127,7 +128,6 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                       'Amet',
                       'Consectetur'
                     ],
-                    user: widget.user,
                   ),
                 ),
                 // for (var product in prodList.getCurrProductList()) product,

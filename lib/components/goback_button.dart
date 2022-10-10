@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GoBackButton extends StatelessWidget {
-  const GoBackButton({super.key, required this.user});
-
-  final User user;
+  const GoBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

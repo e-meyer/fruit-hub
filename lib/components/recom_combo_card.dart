@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/product.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:fruithub/screens/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -9,8 +10,10 @@ class RecommendedComboCard extends StatefulWidget {
   const RecommendedComboCard({
     super.key,
     required this.product,
+    required this.user,
   });
 
+  final User user;
   final Product product;
 
   @override
@@ -120,7 +123,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                             }
                           });
                           if (!isInList) {
-                            widget.product.user.addUserProduct(widget.product);
+                            widget.user.addUserProduct(widget.product);
                           }
                         },
                       ),
@@ -134,10 +137,14 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
             ],
           ),
           onPressed: () {
+            Map args = {
+              'user': widget.user,
+              'product': widget.product,
+            };
             Navigator.pushNamed(
               context,
               '/product',
-              arguments: widget.product,
+              arguments: args,
             );
           },
         ),

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/product.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -9,8 +10,10 @@ class CategorizedComboCard extends StatefulWidget {
   const CategorizedComboCard({
     super.key,
     required this.product,
+    required this.user,
   });
 
+  final User user;
   final Product product;
 
   @override
@@ -34,10 +37,14 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
           ),
         ),
         onPressed: () {
+          Map args = {
+            'user': widget.user,
+            'product': widget.product,
+          };
           Navigator.pushNamed(
             context,
             '/product',
-            arguments: widget.product,
+            arguments: args,
           );
         },
         child: Container(
@@ -109,15 +116,16 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
                         bool isInList = false;
-                        widget.product.user.userProducts.forEach((item) {
+                        for (var item in widget.user.userProducts) {
                           if (item.productName == widget.product.productName) {
                             item.productAmount += 1;
                             item.productPrice += widget.product.productPrice;
                             isInList = true;
                           }
-                        });
-                        if (!isInList)
-                          widget.product.user.addUserProduct(widget.product);
+                        }
+                        if (!isInList) {
+                          widget.user.addUserProduct(widget.product);
+                        }
                       },
                     ),
                   ),

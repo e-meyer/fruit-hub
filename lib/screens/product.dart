@@ -19,7 +19,9 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     // var user = ModalRoute.of(context)!.settings.arguments as User;
     NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
-    var product = ModalRoute.of(context)!.settings.arguments as Product;
+    var args = ModalRoute.of(context)!.settings.arguments as Map;
+    var user = args['user'];
+    var product = args['product'];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -56,7 +58,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          GoBackButton(user: product.user),
+                          GoBackButton(),
                         ],
                       ),
                     ),
@@ -239,7 +241,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                               onPressed: () {
                                 bool isInList = false;
-                                product.user.userProducts.forEach((item) {
+                                user.userProducts.forEach((item) {
                                   if (item.productName == product.productName) {
                                     item.productAmount += productAmount;
                                     item.productPrice = item.productPrice +
@@ -248,7 +250,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   }
                                 });
                                 if (!isInList) {
-                                  product.user.addUserProduct(
+                                  user.addUserProduct(
                                     Product(
                                       productName: product.productName,
                                       productAssetPath:
@@ -258,7 +260,6 @@ class _ProductScreenState extends State<ProductScreen> {
                                       productAmount: productAmount,
                                       productBrief: '',
                                       productContains: const [],
-                                      user: product.user,
                                     ),
                                   );
                                 }

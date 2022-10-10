@@ -40,6 +40,7 @@ class _RecommendedComboState extends State<RecommendedCombo> {
           Row(
             children: [
               RecommendedComboCard(
+                user: widget.user,
                 product: Product(
                   productAssetPath: 'assets/foods/honey-lime-combo.png',
                   productName: 'Honey lime combo',
@@ -56,13 +57,13 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                     'Limes',
                     'Blueberries'
                   ],
-                  user: widget.user,
                 ),
               ),
               const SizedBox(
                 width: 20,
               ),
               RecommendedComboCard(
+                user: widget.user,
                 product: Product(
                   productAssetPath: 'assets/foods/berry-mango-combo.png',
                   productName: 'Berry mango combo',
@@ -79,7 +80,6 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                     'Limes',
                     'Blueberries'
                   ],
-                  user: widget.user,
                 ),
               ),
             ],
