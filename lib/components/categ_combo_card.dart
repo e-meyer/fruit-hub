@@ -2,13 +2,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/product_basket_card.dart';
+import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:fruithub/components/recom_combo_card.dart';
 
-class ProductCard extends StatefulWidget {
-  const ProductCard({
+class CategorizedComboCard extends StatefulWidget {
+  const CategorizedComboCard({
     super.key,
     required this.productAssetPath,
     required this.productName,
@@ -24,10 +25,10 @@ class ProductCard extends StatefulWidget {
   final User user;
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<CategorizedComboCard> createState() => _CategorizedComboCardState();
 }
 
-class _ProductCardState extends State<ProductCard> {
+class _CategorizedComboCardState extends State<CategorizedComboCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
   Random random = Random();
 
@@ -44,24 +45,26 @@ class _ProductCardState extends State<ProductCard> {
           ),
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/product', arguments: {
-            'usuario': widget.user,
-            'product': ComboCard(
-              usuario: widget.user,
-              comboAssetPath: widget.productAssetPath,
-              comboName: widget.productName,
-              comboPrice: widget.productPrice,
-              comboBrief:
+          Navigator.pushNamed(
+            context,
+            '/product',
+            arguments: Product(
+              user: widget.user,
+              productAssetPath: widget.productAssetPath,
+              productName: widget.productName,
+              productPrice: widget.productPrice,
+              productBrief:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-              comboContains: [
+              productContains: const [
                 'Lorem',
                 'Ipsum',
                 'Dolor Sit',
                 'Amet',
                 'Consectetur'
               ],
+              productAmount: 1,
             ),
-          });
+          );
         },
         child: Container(
           height: 200,
@@ -105,25 +108,28 @@ class _ProductCardState extends State<ProductCard> {
                     radius: 12,
                     backgroundColor: Color(0xFFFFF2E7),
                     child: IconButton(
-                      splashRadius: 20,
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: () {
-                        print(widget.user.userProducts.length);
-                        widget.user.addUserProduct(
-                          ProductBasketCard(
-                            productName: widget.productName,
-                            productAssetPath: widget.productAssetPath,
-                            productPrice: widget.productPrice,
-                            productQuantity: 1,
-                          ),
-                        );
-                      },
                       icon: Icon(
                         Icons.add,
                         size: 20,
                       ),
+                      splashRadius: 20,
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
                       color: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        print(widget.user.userProducts.length);
+                        widget.user.addUserProduct(
+                          Product(
+                            productName: widget.productName,
+                            productAssetPath: widget.productAssetPath,
+                            productPrice: widget.productPrice,
+                            productAmount: 1,
+                            user: widget.user,
+                            productBrief: '',
+                            productContains: [],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

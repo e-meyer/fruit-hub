@@ -51,6 +51,30 @@ class WelcomeScreen extends StatelessWidget {
                             color: Color(0xFF5D577E),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 60),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              minimumSize: const Size.fromHeight(40),
+                            ),
+                            child: Text(
+                              "Let's Continue",
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/auth');
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -58,29 +82,6 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 15.0),
-            backgroundColor: Theme.of(context).primaryColor,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            minimumSize: const Size.fromHeight(40),
-          ),
-          child: Text(
-            "Let's Continue",
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/auth');
-          },
         ),
       ),
     );

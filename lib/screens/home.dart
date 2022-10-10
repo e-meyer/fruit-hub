@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/categorized_meals.dart';
+import 'package:fruithub/components/categ_combo.dart';
 import 'package:fruithub/components/filter_list.dart';
 import 'package:fruithub/components/navbar.dart';
-import 'package:fruithub/components/recom_combo_structure.dart';
+import 'package:fruithub/components/recom_combo.dart';
 import 'package:fruithub/components/searchbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // recieves argument from last screen and stores it in user
     var user = ModalRoute.of(context)!.settings.arguments as User;
-    print(user.name);
+
     return Scaffold(
       drawer: NavBar(),
       backgroundColor: Colors.white,
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Row(
                 children: [
-                  Flexible(
+                  const Flexible(
                     child: SearchBar(),
                   ),
                   SizedBox(width: 5),
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
             RecommendedCombo(user: usuario),
             const SizedBox(height: 40),
             // RecommendedCombo(user: usuario),
-            CategorizedMeals(user: usuario),
+            CategorizedCombo(user: usuario),
             const SizedBox(height: 10),
           ],
         ),

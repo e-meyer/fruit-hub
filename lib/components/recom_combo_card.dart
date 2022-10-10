@@ -1,36 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruithub/components/product_basket_card.dart';
-import 'package:fruithub/data/products.dart';
-import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home_screen.dart';
-import 'package:fruithub/screens/product_screen.dart';
+import 'package:fruithub/data/product.dart';
+import 'package:fruithub/screens/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class ComboCard extends StatefulWidget {
-  const ComboCard({
+class RecommendedComboCard extends StatefulWidget {
+  const RecommendedComboCard({
     super.key,
-    required this.comboAssetPath,
-    required this.comboName,
-    required this.comboPrice,
-    required this.usuario,
-    required this.comboContains,
-    required this.comboBrief,
+    required this.product,
   });
 
-  final String comboAssetPath;
-  final String comboName;
-  final double comboPrice;
-  final User usuario;
-  final List<String> comboContains;
-  final String comboBrief;
+  final Product product;
 
   @override
-  State<ComboCard> createState() => ComboCardState();
+  State<RecommendedComboCard> createState() => RecommendedComboCardState();
 }
 
-class ComboCardState extends State<ComboCard> {
+class RecommendedComboCardState extends State<RecommendedComboCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
   @override
   Widget build(BuildContext context) {
@@ -59,12 +46,12 @@ class ComboCardState extends State<ComboCard> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 15),
                 child: Image.asset(
-                  widget.comboAssetPath,
+                  widget.product.productAssetPath,
                   width: 80,
                 ),
               ),
               Text(
-                widget.comboName,
+                widget.product.productName,
                 style: GoogleFonts.poppins(
                   color: Color(0xFF27214D),
                   fontSize: 12,
@@ -84,7 +71,7 @@ class ComboCardState extends State<ComboCard> {
                         SvgPicture.asset('assets/icons/money-sign.svg'),
                         SizedBox(width: 5),
                         Text(
-                          "${numberFormatter.format(widget.comboPrice)}",
+                          "${numberFormatter.format(widget.product.productPrice)}",
                           style: GoogleFonts.poppins(
                             color: Theme.of(context).primaryColor,
                             fontSize: 14,
@@ -106,14 +93,29 @@ class ComboCardState extends State<ComboCard> {
                         ),
                         color: Theme.of(context).primaryColor,
                         onPressed: () {
-                          widget.usuario.addUserProduct(
-                            ProductBasketCard(
-                              productName: widget.comboName,
-                              productAssetPath: widget.comboAssetPath,
-                              productPrice: widget.comboPrice,
-                              productQuantity: 1,
-                            ),
-                          );
+                          bool isInList = false;
+                          usuario.userProducts.forEach((item) {
+                            if (item.productName ==
+                                widget.product.productName) {
+                              item.productAmount += 1;
+                              item.productPrice += widget.product.productPrice;
+                              isInList = true;
+                            }
+                          });
+                          if (!isInList) {
+                            widget.product.user.addUserProduct(
+                              Product(
+                                productName: widget.product.productName,
+                                productAssetPath:
+                                    widget.product.productAssetPath,
+                                productPrice: widget.product.productPrice,
+                                productAmount: 1,
+                                user: usuario,
+                                productBrief: '',
+                                productContains: [],
+                              ),
+                            );
+                          }
                         },
                       ),
                     ),
@@ -126,28 +128,19 @@ class ComboCardState extends State<ComboCard> {
             ],
           ),
           onPressed: () {
-            // Map args = {
-            //   'usuario': usuario,
-            //   'product': ComboCard(
-            //     comboAssetPath: widget.comboAssetPath,
-            //     comboName: widget.comboName,
-            //     usuario: widget.usuario,
-            //     comboPrice: widget.comboPrice,
-            //     comboBrief: widget.comboBrief,
-            //     comboContains: widget.comboContains,
-            //   ),
-            // };
-            Navigator.pushNamed(context, '/product', arguments: {
-              'usuario': usuario,
-              'product': ComboCard(
-                comboAssetPath: widget.comboAssetPath,
-                comboName: widget.comboName,
-                usuario: widget.usuario,
-                comboPrice: widget.comboPrice,
-                comboBrief: widget.comboBrief,
-                comboContains: widget.comboContains,
+            Navigator.pushNamed(
+              context,
+              '/product',
+              arguments: Product(
+                productAssetPath: widget.product.productAssetPath,
+                productName: widget.product.productName,
+                user: widget.product.user,
+                productPrice: widget.product.productPrice,
+                productBrief: widget.product.productBrief,
+                productContains: widget.product.productContains,
+                productAmount: 1,
               ),
-            });
+            );
           },
         ),
       ),

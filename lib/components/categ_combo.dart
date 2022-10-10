@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/categorized_meals_labels.dart';
-import 'package:fruithub/components/categorized_menu.dart';
-import 'package:fruithub/components/categorized_product_card.dart';
+import 'package:fruithub/components/categ_combo_labels.dart';
+import 'package:fruithub/components/categ_combo_menu.dart';
+import 'package:fruithub/components/categ_combo_card.dart';
 import 'package:fruithub/components/recom_combo_card.dart';
-import 'package:fruithub/data/products.dart';
+import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home_screen.dart';
+import 'package:fruithub/screens/home.dart';
 
-class CategorizedMeals extends StatefulWidget {
-  const CategorizedMeals({super.key, required this.user});
+class CategorizedCombo extends StatefulWidget {
+  const CategorizedCombo({super.key, required this.user});
 
   final User user;
 
   @override
-  State<CategorizedMeals> createState() => _CategorizedMealsState();
+  State<CategorizedCombo> createState() => _CategorizedComboState();
 }
 
-class _CategorizedMealsState extends State<CategorizedMeals> {
+class _CategorizedComboState extends State<CategorizedCombo> {
   final List<bool> _selectedMenu = <bool>[true, false, false];
 
   //Product prodList = Product();
@@ -55,28 +55,28 @@ class _CategorizedMealsState extends State<CategorizedMeals> {
               scrollDirection: Axis.horizontal,
               children: [
                 const SizedBox(width: 20),
-                ProductCard(
+                CategorizedComboCard(
                   productName: 'Quinoa fruit salad',
                   productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
                   productPrice: 10000,
                   productColor: Color.fromRGBO(255, 255, 0, 0.06),
                   user: widget.user,
                 ),
-                ProductCard(
+                CategorizedComboCard(
                   productName: 'Tropical fruit salad',
                   productAssetPath: 'assets/foods/bread-eggs.png',
                   productPrice: 10000,
                   productColor: Color.fromRGBO(255, 0, 0, 0.06),
                   user: widget.user,
                 ),
-                ProductCard(
+                CategorizedComboCard(
                   productName: 'Fruit mix combo',
                   productAssetPath: 'assets/foods/fruit-mix-1.png',
                   productPrice: 10000,
                   productColor: Color.fromRGBO(0, 0, 255, 0.06),
                   user: widget.user,
                 ),
-                ProductCard(
+                CategorizedComboCard(
                   productName: 'Cooked fruit salad',
                   productAssetPath: 'assets/foods/fruit-mix-2.png',
                   productPrice: 10000,

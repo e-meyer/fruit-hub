@@ -1,35 +1,43 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruithub/data/product.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class ProductBasketCard extends StatefulWidget {
-  const ProductBasketCard({
-    super.key,
-    required this.product,
-    // required this.productAssetPath,
-    // required this.productQuantity,
-    // required this.productName,
-    // required this.productPrice,
+class Product extends StatefulWidget {
+  final String productName;
+  final String productAssetPath;
+  final String productBrief;
+  final List<String> productContains;
+  final User user;
+  double productPrice;
+  int productAmount;
+
+  Product({
+    required this.productBrief,
+    required this.productContains,
+    required this.productAssetPath,
+    required this.productPrice,
+    required this.productName,
+    required this.productAmount,
+    required this.user,
   });
 
-  final Product product;
-  // final String productAssetPath;
-  // final String productName;
-  // final double productPrice;
-  // final int productQuantity;
-
   @override
-  State<ProductBasketCard> createState() => _ProductBasketCardState();
+  State<Product> createState() => _ProductState();
 }
 
-class _ProductBasketCardState extends State<ProductBasketCard> {
-  NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
+class _ProductState extends State<Product> {
+  // void _removeFromList(String prodName) {
+  //   setState(() {
+  //     widget.user.removeUserProduct(prodName);
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
+    NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
     Random random = Random();
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
@@ -52,7 +60,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                 width: 64,
                 child: Center(
                   child: Image.asset(
-                    widget.product.productAssetPath,
+                    widget.productAssetPath,
                     height: 40,
                   ),
                 ),
@@ -65,7 +73,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.product.productName,
+                      widget.productName,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         color: Color(0xFF333333),
@@ -73,7 +81,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                       ),
                     ),
                     Text(
-                      widget.product.productAmount.toString() + 'packs',
+                      widget.productAmount.toString() + 'packs',
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: Color(0xFF000000),
@@ -89,7 +97,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                         ),
                         SizedBox(width: 5),
                         Text(
-                          numberFormatter.format(widget.product.productPrice),
+                          numberFormatter.format(widget.productPrice),
                           style: GoogleFonts.poppins(
                             color: Color(0xFF27214D),
                             fontSize: 16,
@@ -115,9 +123,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                 size: 24,
               ),
               onPressed: () {
-                // print('entrou fdp');
-                // widget.product.user
-                //     .removeUserProduct(widget.product.productName);
+                // _removeFromList(widget.productName);
               },
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/categorized_meals_labels.dart';
-import 'package:fruithub/data/products.dart';
+import 'package:fruithub/components/categ_combo_labels.dart';
+import 'package:fruithub/data/product.dart';
 
 final List<bool> _selectedMenu = <bool>[true, false, false];
 
@@ -10,8 +10,6 @@ class CategorizedMenu extends StatefulWidget {
     // required this.prodList,
     required this.notifyParent,
   });
-
-  // Product prodList = Product();
 
   final Function() notifyParent;
 

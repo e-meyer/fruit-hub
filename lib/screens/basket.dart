@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/goback_button.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home_screen.dart';
+import 'package:fruithub/screens/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +29,12 @@ class _BasketScreenState extends State<BasketScreen> {
         total += u.productPrice;
       }
       return total;
+    }
+
+    void _deleteToDoItem(String prodName) {
+      setState(() {
+        user.userProducts.removeWhere((item) => item.productName == prodName);
+      });
     }
 
     return Scaffold(
@@ -92,6 +98,7 @@ class _BasketScreenState extends State<BasketScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               child: ListView(
+                key: Key(user.userProducts.length.toString()),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: [

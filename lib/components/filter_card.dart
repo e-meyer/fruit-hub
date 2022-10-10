@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FilterCard extends StatefulWidget {
+class FilterCard extends StatelessWidget {
   const FilterCard({super.key, required this.filterName});
 
   final String filterName;
 
-  @override
-  State<FilterCard> createState() => _FilterCardState();
-}
-
-class _FilterCardState extends State<FilterCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +20,7 @@ class _FilterCardState extends State<FilterCard> {
         ),
         onPressed: () {},
         child: Text(
-          widget.filterName,
+          filterName,
           style: GoogleFonts.poppins(
             color: Color(0xFF333333),
             fontSize: 14,

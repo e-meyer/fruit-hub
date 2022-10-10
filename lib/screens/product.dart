@@ -5,6 +5,7 @@ import 'package:fruithub/components/filter_card.dart';
 import 'package:fruithub/components/goback_button.dart';
 import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/components/recom_combo_card.dart';
+import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -22,9 +23,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     // var user = ModalRoute.of(context)!.settings.arguments as User;
     NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
-    var args = ModalRoute.of(context)!.settings.arguments as Map;
-    var usuario = args['usuario'];
-    var product = args['product'];
+    var product = ModalRoute.of(context)!.settings.arguments as Product;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -63,7 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          GoBackButton(user: usuario),
+                          GoBackButton(user: product.user),
                         ],
                       ),
                     ),
@@ -72,7 +71,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Image.asset(
-                          product.comboAssetPath,
+                          product.productAssetPath,
                           height: 176,
                         ),
                       ),
@@ -98,7 +97,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.comboName,
+                        product.productName,
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           color: Color(0xFF27214D),
@@ -119,7 +118,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
                                   constraints: BoxConstraints(),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.remove,
                                     size: 18,
                                   ),
@@ -142,7 +141,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
                                   constraints: BoxConstraints(),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18,
                                   ),
@@ -160,8 +159,8 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                numberFormatter
-                                    .format(product.comboPrice * productAmount),
+                                numberFormatter.format(
+                                    product.productPrice * productAmount),
                                 style: GoogleFonts.poppins(
                                   color: Color(0xFF27214D),
                                   fontWeight: FontWeight.w500,
@@ -172,13 +171,13 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Container(
                         width: double.infinity,
                         height: 1,
                         color: Color(0xFFF3F3F3),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Text(
                         "This combo contains: ",
                         style: GoogleFonts.poppins(
@@ -186,81 +185,98 @@ class _ProductScreenState extends State<ProductScreen> {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Container(
                         width: 60,
                         height: 2,
                         color: Theme.of(context).primaryColor,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Wrap(
                         children: [
-                          for (var ingredient in product.comboContains)
+                          for (var ingredient in product.productContains)
                             ComboContains(ingredient: ingredient),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         width: double.infinity,
                         height: 1,
                         color: Color(0xFFF3F3F3),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Text(
-                        product.comboBrief,
+                        product.productBrief,
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: Color(0xFF333333),
+                          color: const Color(0xFF333333),
                           fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              radius: 20,
+                              backgroundColor: const Color(0xFFFFF7F0),
+                              child: SvgPicture.asset(
+                                'assets/icons/heart.svg',
+                                height: 20,
+                              ),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 15.0, horizontal: 60),
+                                backgroundColor: Color(0xFFFFA451),
+                                elevation: 0,
+                              ),
+                              child: Text(
+                                "Add To Basket",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              onPressed: () {
+                                bool isInList = false;
+                                product.user.userProducts.forEach((item) {
+                                  if (item.productName == product.productName) {
+                                    item.productAmount += productAmount;
+                                    item.productPrice = item.productPrice +
+                                        (productAmount * product.productPrice);
+                                    isInList = true;
+                                  }
+                                });
+                                if (!isInList) {
+                                  product.user.addUserProduct(
+                                    Product(
+                                      productName: product.productName,
+                                      productAssetPath:
+                                          product.productAssetPath,
+                                      productPrice:
+                                          product.productPrice * productAmount,
+                                      productAmount: productAmount,
+                                      productBrief: '',
+                                      productContains: [],
+                                      user: product.user,
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 15, 25, 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: Color(0xFFFFF7F0),
-              child: SvgPicture.asset(
-                'assets/icons/heart.svg',
-                height: 20,
-              ),
-            ),
-            ElevatedButton(
-              child: Text(
-                "Add To Basket",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 60),
-                backgroundColor: Color(0xFFFFA451),
-                elevation: 0,
-              ),
-              onPressed: () {
-                usuario.addUserProduct(
-                  ProductBasketCard(
-                    productName: product.comboName,
-                    productAssetPath: product.comboAssetPath,
-                    productPrice: product.comboPrice * productAmount,
-                    productQuantity: productAmount,
-                  ),
-                );
-              },
             ),
           ],
         ),
