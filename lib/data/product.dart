@@ -70,18 +70,18 @@ class _ProductState extends State<Product> {
                   children: [
                     Text(
                       widget.productName,
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.nunito(
                         fontSize: 16,
                         color: const Color(0xFF333333),
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
                       "${widget.productAmount.toString()}packs",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.nunito(
                         fontSize: 12,
                         color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Row(
@@ -94,10 +94,10 @@ class _ProductState extends State<Product> {
                         const SizedBox(width: 5),
                         Text(
                           numberFormatter.format(widget.productPrice),
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.nunito(
                             color: const Color(0xFF27214D),
                             fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],

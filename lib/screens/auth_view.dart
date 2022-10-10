@@ -54,20 +54,20 @@ class _AuthScreenState extends State<AuthScreen> {
                       children: [
                         Text(
                           "What is your first name?",
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.nunito(
                             fontSize: 16,
                             color: const Color(0xFF27214D),
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 10),
                         Form(
                           key: _formKey,
                           child: TextFormField(
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.nunito(
                               fontSize: 16,
                               color: const Color(0xFF5D577E),
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w700,
                             ),
                             maxLength: 16,
                             controller: _username,
@@ -118,7 +118,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                             child: Text(
                               "Start Ordering",
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.nunito(
                                 fontSize: 16,
                               ),
                             ),

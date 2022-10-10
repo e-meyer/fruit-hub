@@ -4,9 +4,8 @@ import 'package:fruithub/components/categ_combo_labels.dart';
 final List<bool> _selectedMenu = <bool>[true, false, false];
 
 class CategorizedMenu extends StatefulWidget {
-  CategorizedMenu({
+  const CategorizedMenu({
     super.key,
-    // required this.prodList,
     required this.notifyParent,
   });
 
@@ -30,10 +29,10 @@ class _CategorizedMenuState extends State<CategorizedMenu> {
 
         widget.notifyParent();
       },
-      splashColor: Color(0xFFFFFFFF),
+      splashColor: const Color(0xFFFFFFFF),
       selectedColor: const Color(0xFF27214D),
       fillColor: Colors.white,
-      constraints: BoxConstraints(maxHeight: 30),
+      constraints: const BoxConstraints(maxHeight: 30),
       color: const Color(0xFFACB3BC),
       isSelected: _selectedMenu,
       children: const [

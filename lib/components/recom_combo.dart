@@ -23,8 +23,8 @@ class _RecommendedComboState extends State<RecommendedCombo> {
         children: [
           Text(
             'Recommended Combo',
-            style: GoogleFonts.poppins(
-              color: Color(0xFF27214D),
+            style: GoogleFonts.nunito(
+              color: const Color(0xFF27214D),
               fontSize: 18,
             ),
           ),

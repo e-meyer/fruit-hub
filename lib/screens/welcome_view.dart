@@ -37,8 +37,8 @@ class WelcomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Get The Freshset Fruit Salad Combo",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold,
+                          style: GoogleFonts.nunito(
+                            fontWeight: FontWeight.w700,
                             fontSize: 16,
                             color: const Color(0xFF27214D),
                           ),
@@ -46,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         Text(
                           "We deliver the best and freshet fruit salad in town. Order for a combo today!!!",
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.nunito(
                             fontSize: 16,
                             color: const Color(0xFF5D577E),
                           ),
@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                             child: Text(
                               "Let's Continue",
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.nunito(
                                 fontSize: 16,
                               ),
                             ),

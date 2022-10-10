@@ -34,7 +34,7 @@ class FilterCard extends StatelessWidget {
           onPressed: () {},
           child: Text(
             filterName,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.nunito(
               color: const Color(0xFF333333),
               fontSize: 14,
             ),

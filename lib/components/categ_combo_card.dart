@@ -49,7 +49,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
         },
         child: Container(
           height: 200,
-          width: 115,
+          width: 118,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -80,10 +80,10 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
               ),
               Text(
                 widget.product.productName,
-                style: GoogleFonts.poppins(
-                  color: Color(0xFF27214D),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+                style: GoogleFonts.nunito(
+                  color: const Color(0xFF27214D),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -99,10 +99,10 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       const SizedBox(width: 5),
                       Text(
                         numberFormatter.format(widget.product.productPrice),
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                           color: Theme.of(context).primaryColor,
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],

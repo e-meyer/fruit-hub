@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 40),
           RecommendedCombo(user: usuario),
           const SizedBox(height: 40),
-          // RecommendedCombo(user: usuario),
           CategorizedCombo(user: usuario),
           const SizedBox(height: 10),
         ],

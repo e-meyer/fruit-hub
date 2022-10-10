@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:fruithub/components/categ_combo_menu.dart';
 import 'package:fruithub/components/categ_combo_card.dart';
-
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 
@@ -17,8 +15,6 @@ class CategorizedCombo extends StatefulWidget {
 
 class _CategorizedComboState extends State<CategorizedCombo> {
   final List<bool> _selectedMenu = <bool>[true, false, false];
-
-  //Product prodList = Product();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                     // prodList: prodList,
                     notifyParent: refresh),
                 Transform.translate(
-                  offset: Offset(0, -6),
+                  offset: const Offset(0, -6),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),

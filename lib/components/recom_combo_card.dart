@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -77,10 +76,10 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
             ),
             Text(
               widget.product.productName,
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.nunito(
                 color: const Color(0xFF27214D),
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
               textAlign: TextAlign.center,
             ),
@@ -98,10 +97,10 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                       const SizedBox(width: 5),
                       Text(
                         "${numberFormatter.format(widget.product.productPrice)}",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                           color: Theme.of(context).primaryColor,
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],

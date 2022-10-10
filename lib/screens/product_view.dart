@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/combo_contains.dart';
 import 'package:fruithub/components/goback_button.dart';
-import 'package:fruithub/data/product.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -25,6 +24,7 @@ class _ProductScreenState extends State<ProductScreen> {
     double width = MediaQuery.of(context).size.width;
 
     void _incrementAmount() {
+      if (productAmount >= 99) return;
       setState(() {
         productAmount++;
       });
@@ -56,7 +56,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           GoBackButton(),
                         ],
                       ),
@@ -93,10 +93,10 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text(
                         product.productName,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                           fontSize: 24,
                           color: const Color(0xFF27214D),
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -121,11 +121,16 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                               ),
                               const SizedBox(width: 25),
-                              Text(
-                                "$productAmount",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 24,
-                                  color: const Color(0xFF27214D),
+                              SizedBox(
+                                width: 30,
+                                child: Center(
+                                  child: Text(
+                                    "$productAmount",
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 24,
+                                      color: const Color(0xFF27214D),
+                                    ),
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 25),
@@ -156,9 +161,9 @@ class _ProductScreenState extends State<ProductScreen> {
                               Text(
                                 numberFormatter.format(
                                     product.productPrice * productAmount),
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.nunito(
                                   color: const Color(0xFF27214D),
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 24,
                                 ),
                               ),
@@ -175,7 +180,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       const SizedBox(height: 15),
                       Text(
                         "This combo contains: ",
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                           color: const Color(0xFF27214D),
                           fontSize: 18,
                         ),
@@ -202,10 +207,10 @@ class _ProductScreenState extends State<ProductScreen> {
                       const SizedBox(height: 15),
                       Text(
                         product.productBrief,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                           fontSize: 12,
                           color: const Color(0xFF333333),
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       Padding(
@@ -233,35 +238,13 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                               child: Text(
                                 "Add To Basket",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.nunito(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               onPressed: () {
-                                bool isInList = false;
-                                user.userProducts.forEach((item) {
-                                  if (item.productName == product.productName) {
-                                    item.productAmount += productAmount;
-                                    item.productPrice = item.productPrice +
-                                        (productAmount * product.productPrice);
-                                    isInList = true;
-                                  }
-                                });
-                                if (!isInList) {
-                                  user.addUserProduct(
-                                    Product(
-                                      productName: product.productName,
-                                      productAssetPath:
-                                          product.productAssetPath,
-                                      productPrice:
-                                          product.productPrice * productAmount,
-                                      productAmount: productAmount,
-                                      productBrief: '',
-                                      productContains: const [],
-                                    ),
-                                  );
-                                }
+                                _addProductToBasket(user, product);
                               },
                             ),
                           ],
@@ -276,5 +259,21 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
     );
+  }
+
+  void _addProductToBasket(user, product) {
+    bool isInList = false;
+    for (var item in user.userProducts) {
+      if (item.productName == product.productName) {
+        item.productAmount += productAmount;
+        item.productPrice =
+            item.productPrice + (productAmount * product.productPrice);
+        isInList = true;
+      }
+    }
+    ;
+    if (!isInList) {
+      user.addUserProduct(product);
+    }
   }
 }

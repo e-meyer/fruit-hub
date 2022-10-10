@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -8,8 +7,6 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = ModalRoute.of(context)!.settings.arguments as User;
-
     return Scaffold(
       body: Center(
         child: Column(
@@ -19,7 +16,7 @@ class CheckoutScreen extends StatelessWidget {
               'assets/confirmed-order.svg',
               height: 180,
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Text(
               'Order Taken',
               style: GoogleFonts.poppins(
@@ -27,7 +24,7 @@ class CheckoutScreen extends StatelessWidget {
                 fontSize: 32,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: Text(
@@ -53,7 +50,6 @@ class CheckoutScreen extends StatelessWidget {
                     vertical: 15,
                   )),
               onPressed: () {
-                user.resetUserProduct();
                 Navigator.pop(context);
               },
               child: Text(

@@ -18,7 +18,7 @@ class GoBackButton extends StatelessWidget {
         elevation: 0,
         minimumSize: Size.zero, // Set this
 
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       ),
       child: Row(
         children: [
@@ -28,7 +28,7 @@ class GoBackButton extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             "Go back",
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.nunito(
               fontSize: 12,
               color: const Color(0xFF27214D),
             ),

@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/product.dart';
@@ -10,17 +9,9 @@ class ProductBasketCard extends StatefulWidget {
   const ProductBasketCard({
     super.key,
     required this.product,
-    // required this.productAssetPath,
-    // required this.productQuantity,
-    // required this.productName,
-    // required this.productPrice,
   });
 
   final Product product;
-  // final String productAssetPath;
-  // final String productName;
-  // final double productPrice;
-  // final int productQuantity;
 
   @override
   State<ProductBasketCard> createState() => _ProductBasketCardState();
@@ -66,18 +57,18 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                   children: [
                     Text(
                       widget.product.productName,
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.nunito(
                         fontSize: 16,
-                        color: Color(0xFF333333),
-                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF333333),
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      widget.product.productAmount.toString() + 'packs',
-                      style: GoogleFonts.poppins(
+                      '${widget.product.productAmount.toString()}packs',
+                      style: GoogleFonts.nunito(
                         fontSize: 12,
-                        color: Color(0xFF000000),
-                        fontWeight: FontWeight.w300,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     Row(
@@ -90,10 +81,10 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                         const SizedBox(width: 5),
                         Text(
                           numberFormatter.format(widget.product.productPrice),
-                          style: GoogleFonts.poppins(
-                            color: Color(0xFF27214D),
+                          style: GoogleFonts.nunito(
+                            color: const Color(0xFF27214D),
                             fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],

@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/goback_button.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -50,42 +48,14 @@ class _BasketScreenState extends State<BasketScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      print(user.userProducts);
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0)),
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      minimumSize: Size.zero, // Set this
-                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    ),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/go-back.svg',
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "Go back",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Color(0xFF27214D),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  GoBackButton(),
                   Center(
                     child: Text(
                       "My Basket",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.nunito(
                         fontSize: 24,
                         color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -96,13 +66,13 @@ class _BasketScreenState extends State<BasketScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               child: ListView(
                 key: Key(user.userProducts.length.toString()),
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: [
-                  for (var product in usuario.userProducts) product,
+                  for (var product in user.userProducts) product,
                 ],
               ),
             ),
@@ -110,7 +80,7 @@ class _BasketScreenState extends State<BasketScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        color: Color(0xFFFAFAFA),
+        color: const Color(0xFFFAFAFA),
         height: height * 0.15,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -123,10 +93,10 @@ class _BasketScreenState extends State<BasketScreen> {
                 children: [
                   Text(
                     "Total",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.nunito(
                       fontSize: 14,
-                      fontWeight: FontWeight.w200,
-                      color: Color(0xFF333333),
+                      fontWeight: FontWeight.w300,
+                      color: const Color(0xFF333333),
                     ),
                   ),
                   Row(
@@ -134,44 +104,43 @@ class _BasketScreenState extends State<BasketScreen> {
                     children: [
                       SvgPicture.asset(
                         'assets/icons/money-sign.svg',
-                        color: Color(0xFF27214D),
+                        color: const Color(0xFF27214D),
                         height: 20,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
                         numberFormatter.format(calculatesTotal()),
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.nunito(
                             fontSize: 24,
-                            color: Color(0xFF27214D),
-                            fontWeight: FontWeight.w500),
+                            color: const Color(0xFF27214D),
+                            fontWeight: FontWeight.w600),
                       )
                     ],
                   )
                 ],
               ),
               ElevatedButton(
-                child: Text(
-                  "Checkout",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   padding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: width * 0.15),
-                  backgroundColor: Color(0xFFFFA451),
+                  backgroundColor: const Color(0xFFFFA451),
                   elevation: 0,
                 ),
+                child: Text(
+                  "Checkout",
+                  style: GoogleFonts.nunito(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 onPressed: () {
-                  print(user.userProducts.length);
+                  user.resetUserProduct();
                   Navigator.popAndPushNamed(
                     context,
                     '/checkout',
-                    arguments: usuario,
                   );
                 },
               ),
