@@ -22,7 +22,7 @@ class FilterCard extends StatelessWidget {
         child: Text(
           filterName,
           style: GoogleFonts.poppins(
-            color: Color(0xFF333333),
+            color: const Color(0xFF333333),
             fontSize: 14,
           ),
         ),

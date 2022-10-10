@@ -89,7 +89,7 @@ class _BasketScreenState extends State<BasketScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 70,
                   ),
                 ],

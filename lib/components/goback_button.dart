@@ -12,7 +12,6 @@ class GoBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        print(user.userProducts);
         Navigator.pop(context);
       },
       style: ElevatedButton.styleFrom(
@@ -22,19 +21,19 @@ class GoBackButton extends StatelessWidget {
         elevation: 0,
         minimumSize: Size.zero, // Set this
 
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       ),
       child: Row(
         children: [
           SvgPicture.asset(
             'assets/icons/go-back.svg',
           ),
-          SizedBox(width: 5),
+          const SizedBox(width: 5),
           Text(
             "Go back",
             style: GoogleFonts.poppins(
               fontSize: 12,
-              color: Color(0xFF27214D),
+              color: const Color(0xFF27214D),
             ),
           ),
         ],

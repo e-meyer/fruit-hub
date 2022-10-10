@@ -1,28 +1,17 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/data/product.dart';
-import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:fruithub/components/recom_combo_card.dart';
 
 class CategorizedComboCard extends StatefulWidget {
   const CategorizedComboCard({
     super.key,
-    required this.productAssetPath,
-    required this.productName,
-    required this.productPrice,
-    required this.productColor,
-    required this.user,
+    required this.product,
   });
 
-  final String productAssetPath;
-  final String productName;
-  final double productPrice;
-  final Color productColor;
-  final User user;
+  final Product product;
 
   @override
   State<CategorizedComboCard> createState() => _CategorizedComboCardState();
@@ -38,7 +27,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
       padding: const EdgeInsets.fromLTRB(0, 5, 15, 5),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: widget.productColor,
+          backgroundColor: widget.product.productColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -48,22 +37,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
           Navigator.pushNamed(
             context,
             '/product',
-            arguments: Product(
-              user: widget.user,
-              productAssetPath: widget.productAssetPath,
-              productName: widget.productName,
-              productPrice: widget.productPrice,
-              productBrief:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-              productContains: const [
-                'Lorem',
-                'Ipsum',
-                'Dolor Sit',
-                'Amet',
-                'Consectetur'
-              ],
-              productAmount: 1,
-            ),
+            arguments: widget.product,
           );
         },
         child: Container(
@@ -74,12 +48,12 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 0, 25, 15),
                 child: Image.asset(
-                  widget.productAssetPath,
+                  widget.product.productAssetPath,
                   width: 64,
                 ),
               ),
               Text(
-                widget.productName,
+                widget.product.productName,
                 style: GoogleFonts.poppins(
                   color: Color(0xFF27214D),
                   fontSize: 12,
@@ -87,28 +61,28 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SvgPicture.asset(
                     'assets/icons/money-sign.svg',
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
-                    "${numberFormatter.format(widget.productPrice)}",
+                    numberFormatter.format(widget.product.productPrice),
                     style: GoogleFonts.poppins(
                       color: Theme.of(context).primaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   CircleAvatar(
                     radius: 12,
                     backgroundColor: Color(0xFFFFF2E7),
                     child: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.add,
                         size: 20,
                       ),
@@ -117,18 +91,16 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       constraints: BoxConstraints(),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        print(widget.user.userProducts.length);
-                        widget.user.addUserProduct(
-                          Product(
-                            productName: widget.productName,
-                            productAssetPath: widget.productAssetPath,
-                            productPrice: widget.productPrice,
-                            productAmount: 1,
-                            user: widget.user,
-                            productBrief: '',
-                            productContains: [],
-                          ),
-                        );
+                        bool isInList = false;
+                        widget.product.user.userProducts.forEach((item) {
+                          if (item.productName == widget.product.productName) {
+                            item.productAmount += 1;
+                            item.productPrice += widget.product.productPrice;
+                            isInList = true;
+                          }
+                        });
+                        if (!isInList)
+                          widget.product.user.addUserProduct(widget.product);
                       },
                     ),
                   ),

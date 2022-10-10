@@ -15,7 +15,7 @@ class FilterList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      color: Color(0xFFFAFAFA),
+      color: const Color(0xFFFAFAFA),
       child: ListView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,

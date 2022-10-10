@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruithub/components/categ_combo_labels.dart';
+
 import 'package:fruithub/components/categ_combo_menu.dart';
 import 'package:fruithub/components/categ_combo_card.dart';
-import 'package:fruithub/components/recom_combo_card.dart';
+
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
-import 'package:fruithub/screens/home.dart';
 
 class CategorizedCombo extends StatefulWidget {
   const CategorizedCombo({super.key, required this.user});
@@ -48,7 +47,7 @@ class _CategorizedComboState extends State<CategorizedCombo> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 170,
             child: ListView(
               physics: const BouncingScrollPhysics(),
@@ -56,32 +55,80 @@ class _CategorizedComboState extends State<CategorizedCombo> {
               children: [
                 const SizedBox(width: 20),
                 CategorizedComboCard(
-                  productName: 'Quinoa fruit salad',
-                  productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
-                  productPrice: 10000,
-                  productColor: Color.fromRGBO(255, 255, 0, 0.06),
-                  user: widget.user,
+                  product: Product(
+                    productName: 'Quinoa fruit salad',
+                    productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
+                    productPrice: 10000,
+                    productColor: Color.fromRGBO(255, 255, 0, 0.06),
+                    productAmount: 1,
+                    productBrief:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                    productContains: const [
+                      'Lorem',
+                      'Ipsum',
+                      'Dolor Sit',
+                      'Amet',
+                      'Consectetur'
+                    ],
+                    user: widget.user,
+                  ),
                 ),
                 CategorizedComboCard(
-                  productName: 'Tropical fruit salad',
-                  productAssetPath: 'assets/foods/bread-eggs.png',
-                  productPrice: 10000,
-                  productColor: Color.fromRGBO(255, 0, 0, 0.06),
-                  user: widget.user,
+                  product: Product(
+                    productName: 'Tropical fruit salad',
+                    productAssetPath: 'assets/foods/bread-eggs.png',
+                    productPrice: 10000,
+                    productColor: const Color.fromRGBO(255, 0, 0, 0.06),
+                    productAmount: 1,
+                    productBrief:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                    productContains: const [
+                      'Lorem',
+                      'Ipsum',
+                      'Dolor Sit',
+                      'Amet',
+                      'Consectetur'
+                    ],
+                    user: widget.user,
+                  ),
                 ),
                 CategorizedComboCard(
-                  productName: 'Fruit mix combo',
-                  productAssetPath: 'assets/foods/fruit-mix-1.png',
-                  productPrice: 10000,
-                  productColor: Color.fromRGBO(0, 0, 255, 0.06),
-                  user: widget.user,
+                  product: Product(
+                    productName: 'Fruit mix combo',
+                    productAssetPath: 'assets/foods/fruit-mix-1.png',
+                    productPrice: 10000,
+                    productColor: Color.fromRGBO(0, 0, 255, 0.06),
+                    productAmount: 1,
+                    productBrief:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                    productContains: const [
+                      'Lorem',
+                      'Ipsum',
+                      'Dolor Sit',
+                      'Amet',
+                      'Consectetur'
+                    ],
+                    user: widget.user,
+                  ),
                 ),
                 CategorizedComboCard(
-                  productName: 'Cooked fruit salad',
-                  productAssetPath: 'assets/foods/fruit-mix-2.png',
-                  productPrice: 10000,
-                  productColor: Color.fromRGBO(0, 255, 0, 0.06),
-                  user: widget.user,
+                  product: Product(
+                    productName: 'Cooked fruit salad',
+                    productAssetPath: 'assets/foods/fruit-mix-2.png',
+                    productPrice: 10000,
+                    productColor: const Color.fromRGBO(0, 255, 0, 0.06),
+                    productAmount: 1,
+                    productBrief:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                    productContains: const [
+                      'Lorem',
+                      'Ipsum',
+                      'Dolor Sit',
+                      'Amet',
+                      'Consectetur'
+                    ],
+                    user: widget.user,
+                  ),
                 ),
                 // for (var product in prodList.getCurrProductList()) product,
               ],

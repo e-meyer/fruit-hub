@@ -13,8 +13,10 @@ class Product extends StatefulWidget {
   final User user;
   double productPrice;
   int productAmount;
+  Color? productColor;
 
   Product({
+    super.key,
     required this.productBrief,
     required this.productContains,
     required this.productAssetPath,
@@ -22,6 +24,7 @@ class Product extends StatefulWidget {
     required this.productName,
     required this.productAmount,
     required this.user,
+    this.productColor,
   });
 
   @override
@@ -81,7 +84,7 @@ class _ProductState extends State<Product> {
                       ),
                     ),
                     Text(
-                      widget.productAmount.toString() + 'packs',
+                      "${widget.productAmount.toString()}packs",
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: Color(0xFF000000),
@@ -95,7 +98,7 @@ class _ProductState extends State<Product> {
                           color: Color(0xFF27214D),
                           height: 12,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           numberFormatter.format(widget.productPrice),
                           style: GoogleFonts.poppins(
@@ -118,7 +121,7 @@ class _ProductState extends State<Product> {
             child: IconButton(
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
-              icon: Icon(
+              icon: const Icon(
                 Icons.remove,
                 size: 24,
               ),

@@ -53,7 +53,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
               Text(
                 widget.product.productName,
                 style: GoogleFonts.poppins(
-                  color: Color(0xFF27214D),
+                  color: const Color(0xFF27214D),
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
@@ -69,7 +69,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/icons/money-sign.svg'),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           "${numberFormatter.format(widget.product.productPrice)}",
                           style: GoogleFonts.poppins(
@@ -80,14 +80,14 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 35),
+                    const SizedBox(width: 35),
                     CircleAvatar(
                       radius: 12,
                       backgroundColor: Color(0xFFFFF2E7),
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add,
                           size: 20,
                         ),
@@ -103,18 +103,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                             }
                           });
                           if (!isInList) {
-                            widget.product.user.addUserProduct(
-                              Product(
-                                productName: widget.product.productName,
-                                productAssetPath:
-                                    widget.product.productAssetPath,
-                                productPrice: widget.product.productPrice,
-                                productAmount: 1,
-                                user: usuario,
-                                productBrief: '',
-                                productContains: [],
-                              ),
-                            );
+                            widget.product.user.addUserProduct(widget.product);
                           }
                         },
                       ),
@@ -122,7 +111,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               )
             ],
@@ -131,15 +120,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
             Navigator.pushNamed(
               context,
               '/product',
-              arguments: Product(
-                productAssetPath: widget.product.productAssetPath,
-                productName: widget.product.productName,
-                user: widget.product.user,
-                productPrice: widget.product.productPrice,
-                productBrief: widget.product.productBrief,
-                productContains: widget.product.productContains,
-                productAmount: 1,
-              ),
+              arguments: widget.product,
             );
           },
         ),

@@ -10,7 +10,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  TextEditingController _username = TextEditingController();
+  final TextEditingController _username = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -72,7 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             controller: _username,
                             cursorColor: Theme.of(context).primaryColor,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 15),
                               hintText: 'Chris',
                               hintStyle: const TextStyle(
@@ -109,7 +109,8 @@ class _AuthScreenState extends State<AuthScreen> {
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
-                              padding: EdgeInsets.symmetric(vertical: 15.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
                               backgroundColor: Color(0xFFFFA451),
                               elevation: 0,
                               minimumSize: Size.fromHeight(40),
@@ -140,34 +141,6 @@ class _AuthScreenState extends State<AuthScreen> {
           ],
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-      //   child: ElevatedButton(
-      //     style: ElevatedButton.styleFrom(
-      //       shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(10.0)),
-      //       padding: EdgeInsets.symmetric(vertical: 15.0),
-      //       backgroundColor: Color(0xFFFFA451),
-      //       elevation: 0,
-      //       minimumSize: Size.fromHeight(40),
-      //     ),
-      //     child: Text(
-      //       "Start Ordering",
-      //       style: GoogleFonts.poppins(
-      //         fontSize: 16,
-      //       ),
-      //     ),
-      //     onPressed: () {
-      //       if (_formKey.currentState!.validate()) {
-      //         Navigator.pushNamed(
-      //           context,
-      //           '/home',
-      //           arguments: User(_username.text),
-      //         );
-      //       }
-      //     },
-      //   ),
-      // ),
     );
   }
 }

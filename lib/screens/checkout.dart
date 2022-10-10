@@ -33,14 +33,14 @@ class CheckoutScreen extends StatelessWidget {
               child: Text(
                 'Your order have been taken and is being attended to',
                 style: GoogleFonts.poppins(
-                  color: Color(0xFF111111),
+                  color: const Color(0xFF111111),
                   fontWeight: FontWeight.w300,
                   fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -48,7 +48,7 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                   backgroundColor: Theme.of(context).primaryColor,
                   elevation: 0,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 30,
                     vertical: 15,
                   )),

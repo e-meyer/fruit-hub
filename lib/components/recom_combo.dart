@@ -44,7 +44,7 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                   productAssetPath: 'assets/foods/honey-lime-combo.png',
                   productName: 'Honey lime combo',
                   productPrice: 2000,
-                  user: widget.user,
+                  productAmount: 1,
                   productBrief:
                       'If you are looking for a new fruit salad to eat today, quinoa is the perfect brunch for you to make',
                   productContains: const [
@@ -56,10 +56,10 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                     'Limes',
                     'Blueberries'
                   ],
-                  productAmount: 1,
+                  user: widget.user,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               RecommendedComboCard(
@@ -67,7 +67,7 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                   productAssetPath: 'assets/foods/berry-mango-combo.png',
                   productName: 'Berry mango combo',
                   productPrice: 2000,
-                  user: widget.user,
+                  productAmount: 1,
                   productBrief:
                       'Mango is the perfect brunch for you to make if you are looking for a new fruit salad to eat today.',
                   productContains: const [
@@ -79,7 +79,7 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                     'Limes',
                     'Blueberries'
                   ],
-                  productAmount: 1,
+                  user: widget.user,
                 ),
               ),
             ],

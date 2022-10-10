@@ -15,7 +15,7 @@ class _SearchBarState extends State<SearchBar> {
     return TextField(
       style: GoogleFonts.poppins(
         fontSize: 12,
-        color: Color(0xFF5D577E),
+        color: const Color(0xFF5D577E),
         fontWeight: FontWeight.w400,
       ),
       cursorColor: Theme.of(context).primaryColor,
@@ -27,14 +27,15 @@ class _SearchBarState extends State<SearchBar> {
           ),
         ),
         isDense: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         hintText: 'Search for fruit salad combos',
         hintStyle: const TextStyle(
           fontSize: 12,
           color: Color(0xFFB4B4C0),
         ),
         filled: true,
-        fillColor: Color(0xFFF5F5F5),
+        fillColor: const Color(0xFFF5F5F5),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(

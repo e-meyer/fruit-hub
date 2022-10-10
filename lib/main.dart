@@ -7,16 +7,15 @@ import 'package:fruithub/screens/product.dart';
 import 'package:fruithub/screens/welcome.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FruitHub());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FruitHub extends StatelessWidget {
+  const FruitHub({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fruit Hub',
       theme: ThemeData(
         primaryColor: Color(0xFFffa451),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/data/product.dart';
 
 class User extends ChangeNotifier {
@@ -13,14 +12,13 @@ class User extends ChangeNotifier {
   }
 
   void removeUserProduct(String productName) {
-    userProducts.forEach((item) {
+    for (var item in userProducts) {
       if (item.productName == productName) {
         toRemove.add(item);
       }
-    });
+    }
     userProducts.removeWhere((e) => toRemove.contains(e));
     notifyListeners();
-    print(userProducts.length);
   }
 
   void resetUserProduct() {

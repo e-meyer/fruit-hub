@@ -57,7 +57,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                   ),
                 ),
               ),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               SizedBox(
                 height: 66,
                 child: Column(
@@ -87,7 +87,7 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
                           color: Color(0xFF27214D),
                           height: 12,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           numberFormatter.format(widget.product.productPrice),
                           style: GoogleFonts.poppins(
@@ -110,12 +110,11 @@ class _ProductBasketCardState extends State<ProductBasketCard> {
             child: IconButton(
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
-              icon: Icon(
+              icon: const Icon(
                 Icons.remove,
                 size: 24,
               ),
               onPressed: () {
-                // print('entrou fdp');
                 // widget.product.user
                 //     .removeUserProduct(widget.product.productName);
               },

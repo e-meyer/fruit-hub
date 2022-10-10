@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/combo_contains.dart';
-import 'package:fruithub/components/filter_card.dart';
 import 'package:fruithub/components/goback_button.dart';
-import 'package:fruithub/components/product_basket_card.dart';
-import 'package:fruithub/components/recom_combo_card.dart';
 import 'package:fruithub/data/product.dart';
-import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -31,7 +27,6 @@ class _ProductScreenState extends State<ProductScreen> {
       setState(() {
         productAmount++;
       });
-      print(productAmount);
     }
 
     void _decreaseAmount() {
@@ -39,13 +34,12 @@ class _ProductScreenState extends State<ProductScreen> {
       setState(() {
         productAmount--;
       });
-      print(productAmount);
     }
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -140,7 +134,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 radius: 14,
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
-                                  constraints: BoxConstraints(),
+                                  constraints: const BoxConstraints(),
                                   icon: const Icon(
                                     Icons.add,
                                     size: 18,
@@ -162,7 +156,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 numberFormatter.format(
                                     product.productPrice * productAmount),
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF27214D),
+                                  color: const Color(0xFF27214D),
                                   fontWeight: FontWeight.w500,
                                   fontSize: 24,
                                 ),

@@ -13,13 +13,13 @@ class ComboContains extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: Color(0xFFF4F4F4),
+          color: const Color(0xFFF4F4F4),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
           ingredient,
           style: GoogleFonts.poppins(
-            color: Color(0xFF403E3E),
+            color: const Color(0xFF403E3E),
             fontSize: 12,
           ),
         ),
