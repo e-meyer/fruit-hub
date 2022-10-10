@@ -124,9 +124,10 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.pushNamed(
+                                Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   '/home',
+                                  ((route) => false),
                                   arguments: User(_username.text),
                                 );
                               }

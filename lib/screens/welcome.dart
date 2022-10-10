@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: Color(0xFF27214D),
+                            color: const Color(0xFF27214D),
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                           "We deliver the best and freshet fruit salad in town. Order for a combo today!!!",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: Color(0xFF5D577E),
+                            color: const Color(0xFF5D577E),
                           ),
                         ),
                         Padding(
@@ -71,7 +71,8 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, '/auth');
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/auth', (route) => false);
                             },
                           ),
                         ),
