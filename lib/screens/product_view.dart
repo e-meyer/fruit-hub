@@ -273,6 +273,8 @@ class _ProductScreenState extends State<ProductScreen> {
     }
     ;
     if (!isInList) {
+      product.productAmount = productAmount;
+      product.productPrice = productAmount * product.productPrice;
       user.addUserProduct(product);
     }
   }
