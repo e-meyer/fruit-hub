@@ -91,8 +91,8 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                 CategorizedComboCard(
                   user: widget.user,
                   product: Product(
-                    productName: 'Fruit mix combo',
-                    productAssetPath: 'assets/foods/fruit-mix-1.png',
+                    productName: 'Melon fruit salad',
+                    productAssetPath: 'assets/foods/melon-fruit-salad.png',
                     productPrice: 10000,
                     productColor: Color.fromRGBO(0, 0, 255, 0.06),
                     productAmount: 1,

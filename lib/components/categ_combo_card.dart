@@ -70,10 +70,13 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(25, 10, 25, 15),
-                    child: Image.asset(
-                      widget.product.productAssetPath,
-                      height: 64,
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Center(
+                      child: Image.asset(
+                        widget.product.productAssetPath,
+                        height: 64,
+                        width: 96,
+                      ),
                     ),
                   ),
                 ],
@@ -140,6 +143,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
         item.productAmount += 1;
         item.productPrice += widget.product.productPrice;
         isInList = true;
+        print(item.productPrice);
       }
     }
     if (!isInList) {

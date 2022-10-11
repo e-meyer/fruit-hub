@@ -17,12 +17,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final usuario = User();
+  final user = User();
 
   @override
   void initState() {
     super.initState();
-    usuario.addListener(() {
+    user.addListener(() {
       setState(() {});
     });
   }
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           BasketButton(
-            user: usuario,
+            user: user,
           ),
         ],
         elevation: 0,
@@ -103,9 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 20),
           FilterList(),
           const SizedBox(height: 40),
-          RecommendedCombo(user: usuario),
+          RecommendedCombo(user: user),
           const SizedBox(height: 40),
-          CategorizedCombo(user: usuario),
+          CategorizedCombo(user: user),
           const SizedBox(height: 10),
         ],
       ),

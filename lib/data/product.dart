@@ -57,6 +57,7 @@ class _ProductState extends State<Product> {
                   child: Image.asset(
                     widget.productAssetPath,
                     height: 40,
+                    width: 44,
                   ),
                 ),
               ),

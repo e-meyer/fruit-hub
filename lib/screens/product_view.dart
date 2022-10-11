@@ -68,6 +68,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: Image.asset(
                           product.productAssetPath,
                           height: 176,
+                          width: 235,
                         ),
                       ),
                     ),

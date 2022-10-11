@@ -67,14 +67,34 @@ class _BasketScreenState extends State<BasketScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              child: ListView(
-                key: Key(user.userProducts.length.toString()),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  for (var product in user.userProducts) product,
-                ],
-              ),
+              child: user.userProducts.isEmpty
+                  ? Container(
+                      height: height * 0.7,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Your basket is empty',
+                              style: GoogleFonts.nunito(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black26,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: user.userProducts.length,
+                      itemBuilder: (context, index) {
+                        return user.userProducts[index];
+                      }),
             ),
           ],
         ),
@@ -137,6 +157,9 @@ class _BasketScreenState extends State<BasketScreen> {
                   ),
                 ),
                 onPressed: () {
+                  if (user.userProducts.isEmpty) {
+                    return;
+                  }
                   user.resetUserProduct();
                   Navigator.popAndPushNamed(
                     context,
