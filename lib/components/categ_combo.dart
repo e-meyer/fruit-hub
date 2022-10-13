@@ -5,9 +5,7 @@ import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 
 class CategorizedCombo extends StatefulWidget {
-  const CategorizedCombo({super.key, required this.user});
-
-  final User user;
+  const CategorizedCombo({super.key});
 
   @override
   State<CategorizedCombo> createState() => _CategorizedComboState();
@@ -51,7 +49,6 @@ class _CategorizedComboState extends State<CategorizedCombo> {
               children: [
                 const SizedBox(width: 20),
                 CategorizedComboCard(
-                  user: widget.user,
                   product: Product(
                     productName: 'Quinoa fruit salad',
                     productAssetPath: 'assets/foods/quinoa-fruit-salad.png',
@@ -70,7 +67,6 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                   ),
                 ),
                 CategorizedComboCard(
-                  user: widget.user,
                   product: Product(
                     productName: 'Tropical fruit salad',
                     productAssetPath: 'assets/foods/bread-eggs.png',
@@ -89,7 +85,6 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                   ),
                 ),
                 CategorizedComboCard(
-                  user: widget.user,
                   product: Product(
                     productName: 'Melon fruit salad',
                     productAssetPath: 'assets/foods/melon-fruit-salad.png',
@@ -108,7 +103,6 @@ class _CategorizedComboState extends State<CategorizedCombo> {
                   ),
                 ),
                 CategorizedComboCard(
-                  user: widget.user,
                   product: Product(
                     productName: 'Cooked fruit salad',
                     productAssetPath: 'assets/foods/fruit-mix-2.png',

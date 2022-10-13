@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class RecommendedComboCard extends StatefulWidget {
-  const RecommendedComboCard({
+class RecommendedComboCard extends StatelessWidget {
+  RecommendedComboCard({
     super.key,
     required this.product,
-    required this.user,
   });
 
-  final User user;
   final Product product;
-
-  @override
-  State<RecommendedComboCard> createState() => RecommendedComboCardState();
-}
-
-class RecommendedComboCardState extends State<RecommendedComboCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
+
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     var width = MediaQuery.of(context).size.width;
     return Container(
       height: 190,
@@ -30,9 +26,9 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Color(0xFF808080).withOpacity(0.1),
+            color: const Color(0xFF808080).withOpacity(0.1),
             blurRadius: 20,
-            offset: Offset(0, 15),
+            offset: const Offset(0, 15),
           ),
         ],
       ),
@@ -68,14 +64,14 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                   padding:
                       EdgeInsets.fromLTRB(width * 0.11, 25, width * 0.11, 10),
                   child: Image.asset(
-                    widget.product.productAssetPath,
+                    product.productAssetPath,
                     width: 80,
                   ),
                 ),
               ],
             ),
             Text(
-              widget.product.productName,
+              product.productName,
               style: GoogleFonts.nunito(
                 color: const Color(0xFF27214D),
                 fontSize: 14,
@@ -96,7 +92,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                       SvgPicture.asset('assets/icons/money-sign.svg'),
                       const SizedBox(width: 5),
                       Text(
-                        "${numberFormatter.format(widget.product.productPrice)}",
+                        "${numberFormatter.format(product.productPrice)}",
                         style: GoogleFonts.nunito(
                           color: Theme.of(context).primaryColor,
                           fontSize: 14,
@@ -117,7 +113,7 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
                       ),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        _addProductToBasket();
+                        _addProductToBasket(user);
                       },
                     ),
                   ),
@@ -127,31 +123,24 @@ class RecommendedComboCardState extends State<RecommendedComboCard> {
           ],
         ),
         onPressed: () {
-          Map args = {
-            'user': widget.user,
-            'product': widget.product,
-          };
           Navigator.pushNamed(
             context,
             '/product',
-            arguments: args,
+            arguments: product,
           );
         },
       ),
     );
   }
 
-  void _addProductToBasket() {
-    bool isInList = false;
-    for (var item in widget.user.userProducts) {
-      if (item.productName == widget.product.productName) {
-        item.productAmount += 1;
-        item.productPrice += widget.product.productPrice;
-        isInList = true;
-      }
-    }
-    if (!isInList) {
-      widget.user.addUserProduct(widget.product);
-    }
+  void _addProductToBasket(user) {
+    user.addUserProduct(
+      ProductBasketCard(
+        productAssetPath: product.productAssetPath,
+        productName: product.productName,
+        productPrice: product.productPrice,
+        productAmount: 1,
+      ),
+    );
   }
 }

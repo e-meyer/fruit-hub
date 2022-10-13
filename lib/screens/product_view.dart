@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/components/combo_contains.dart';
 import 'package:fruithub/components/goback_button.dart';
+import 'package:fruithub/components/product_basket_card.dart';
+import 'package:fruithub/data/product.dart';
+import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -16,10 +20,9 @@ class _ProductScreenState extends State<ProductScreen> {
   int productAmount = 1;
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
-    var args = ModalRoute.of(context)!.settings.arguments as Map;
-    var user = args['user'];
-    var product = args['product'];
+    var product = ModalRoute.of(context)!.settings.arguments as Product;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -245,7 +248,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                               ),
                               onPressed: () {
-                                _addProductToBasket(user, product);
+                                showAlertDialog(context, user, product);
                               },
                             ),
                           ],
@@ -263,20 +266,92 @@ class _ProductScreenState extends State<ProductScreen> {
   }
 
   void _addProductToBasket(user, product) {
-    bool isInList = false;
-    for (var item in user.userProducts) {
-      if (item.productName == product.productName) {
-        item.productAmount += productAmount;
-        item.productPrice =
-            item.productPrice + (productAmount * product.productPrice);
-        isInList = true;
-      }
-    }
-    ;
-    if (!isInList) {
-      product.productAmount = productAmount;
-      product.productPrice = productAmount * product.productPrice;
-      user.addUserProduct(product);
-    }
+    user.addUserProduct(
+      ProductBasketCard(
+        productAssetPath: product.productAssetPath,
+        productName: product.productName,
+        productPrice: product.productPrice,
+        productAmount: productAmount,
+      ),
+    );
+  }
+
+  showAlertDialog(BuildContext context, user, product) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: Text(
+        "Cancel",
+        style: GoogleFonts.nunito(
+          fontSize: 14,
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
+    );
+    Widget continueButton = ElevatedButton(
+      onPressed: () {
+        _addProductToBasket(user, product);
+        Navigator.of(context).pop();
+      },
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        padding: EdgeInsets.zero,
+      ),
+      child: Text(
+        "Continue",
+        style: GoogleFonts.nunito(
+          fontSize: 14,
+          color: Theme.of(context).primaryColor,
+          backgroundColor: Colors.transparent,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      contentPadding: EdgeInsets.fromLTRB(10, 15, 10, 5),
+      actionsAlignment: MainAxisAlignment.center,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16))),
+      icon: SvgPicture.asset(
+        'assets/icons/shopping-basket.svg',
+        height: 34,
+      ),
+      title: Text(
+        "Add to basket",
+        style: GoogleFonts.nunito(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
+      content: Text(
+        "Adding x$productAmount ${product.productName} to your basket?",
+        style: GoogleFonts.nunito(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF27214D),
+        ),
+        textAlign: TextAlign.center,
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

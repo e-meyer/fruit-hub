@@ -5,9 +5,7 @@ import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RecommendedCombo extends StatefulWidget {
-  const RecommendedCombo({super.key, required this.user});
-
-  final User user;
+  const RecommendedCombo({super.key});
 
   @override
   State<RecommendedCombo> createState() => _RecommendedComboState();
@@ -41,7 +39,6 @@ class _RecommendedComboState extends State<RecommendedCombo> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RecommendedComboCard(
-                user: widget.user,
                 product: Product(
                   productAssetPath: 'assets/foods/honey-lime-combo.png',
                   productName: 'Honey lime combo',
@@ -61,7 +58,6 @@ class _RecommendedComboState extends State<RecommendedCombo> {
                 ),
               ),
               RecommendedComboCard(
-                user: widget.user,
                 product: Product(
                   productAssetPath: 'assets/foods/berry-mango-combo.png',
                   productName: 'Berry mango combo',

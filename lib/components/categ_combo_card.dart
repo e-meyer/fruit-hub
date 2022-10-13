@@ -1,50 +1,42 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruithub/components/product_basket_card.dart';
 import 'package:fruithub/data/product.dart';
 import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class CategorizedComboCard extends StatefulWidget {
-  const CategorizedComboCard({
+class CategorizedComboCard extends StatelessWidget {
+  CategorizedComboCard({
     super.key,
     required this.product,
-    required this.user,
   });
 
-  final User user;
   final Product product;
-
-  @override
-  State<CategorizedComboCard> createState() => _CategorizedComboCardState();
-}
-
-class _CategorizedComboCardState extends State<CategorizedComboCard> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
   Random random = Random();
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 5, 15, 5),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: widget.product.productColor,
+          backgroundColor: product.productColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
         onPressed: () {
-          Map args = {
-            'user': widget.user,
-            'product': widget.product,
-          };
+          // print(product.productAmount is String);
           Navigator.pushNamed(
             context,
             '/product',
-            arguments: args,
+            arguments: product,
           );
         },
         child: Container(
@@ -73,7 +65,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                     padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Center(
                       child: Image.asset(
-                        widget.product.productAssetPath,
+                        product.productAssetPath,
                         height: 64,
                         width: 96,
                       ),
@@ -82,7 +74,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                 ],
               ),
               Text(
-                widget.product.productName,
+                product.productName,
                 style: GoogleFonts.nunito(
                   color: const Color(0xFF27214D),
                   fontSize: 14,
@@ -101,7 +93,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        numberFormatter.format(widget.product.productPrice),
+                        numberFormatter.format(product.productPrice),
                         style: GoogleFonts.nunito(
                           color: Theme.of(context).primaryColor,
                           fontSize: 14,
@@ -123,7 +115,7 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
                       constraints: BoxConstraints(),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        _addProductToBasket();
+                        _addProductToBasket(user);
                       },
                     ),
                   ),
@@ -136,18 +128,14 @@ class _CategorizedComboCardState extends State<CategorizedComboCard> {
     );
   }
 
-  void _addProductToBasket() {
-    bool isInList = false;
-    for (var item in widget.user.userProducts) {
-      if (item.productName == widget.product.productName) {
-        item.productAmount += 1;
-        item.productPrice += widget.product.productPrice;
-        isInList = true;
-        print(item.productPrice);
-      }
-    }
-    if (!isInList) {
-      widget.user.addUserProduct(widget.product);
-    }
+  void _addProductToBasket(user) {
+    user.addUserProduct(
+      ProductBasketCard(
+        productAssetPath: product.productAssetPath,
+        productName: product.productName,
+        productPrice: product.productPrice,
+        productAmount: 1,
+      ),
+    );
   }
 }

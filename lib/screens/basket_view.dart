@@ -4,35 +4,27 @@ import 'package:fruithub/components/goback_button.dart';
 import 'package:fruithub/data/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class BasketScreen extends StatefulWidget {
-  const BasketScreen({super.key});
+class BasketScreen extends StatelessWidget {
+  BasketScreen({super.key});
 
-  @override
-  State<BasketScreen> createState() => _BasketScreenState();
-}
-
-class _BasketScreenState extends State<BasketScreen> {
   NumberFormat numberFormatter = NumberFormat.decimalPattern('en_us');
 
   @override
   Widget build(BuildContext context) {
-    var user = ModalRoute.of(context)!.settings.arguments as User;
+    User user = Provider.of<User>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double total = 0;
 
     calculatesTotal() {
       for (var u in user.userProducts) {
-        total += u.productPrice;
+        print((u.productPrice * u.productAmount));
+        total += (u.productPrice * u.productAmount);
       }
+      print(total);
       return total;
-    }
-
-    void _deleteToDoItem(String prodName) {
-      setState(() {
-        user.userProducts.removeWhere((item) => item.productName == prodName);
-      });
     }
 
     return Scaffold(
@@ -67,7 +59,7 @@ class _BasketScreenState extends State<BasketScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              child: user.userProducts.isEmpty
+              child: user.userProducts.length == 0
                   ? Container(
                       height: height * 0.7,
                       child: Center(
@@ -93,6 +85,7 @@ class _BasketScreenState extends State<BasketScreen> {
                       shrinkWrap: true,
                       itemCount: user.userProducts.length,
                       itemBuilder: (context, index) {
+                        print(user.userProducts[index]);
                         return user.userProducts[index];
                       }),
             ),
@@ -157,6 +150,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   ),
                 ),
                 onPressed: () {
+                  print(user.userProducts);
                   if (user.userProducts.isEmpty) {
                     return;
                   }

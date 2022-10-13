@@ -3,9 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruithub/data/user.dart';
 
 class BasketButton extends StatelessWidget {
-  const BasketButton({super.key, required this.user});
-
-  final User user;
+  const BasketButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,6 @@ class BasketButton extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/basket',
-                arguments: user,
               );
             },
             icon: SvgPicture.asset(
